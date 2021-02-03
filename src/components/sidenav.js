@@ -31,14 +31,14 @@ const SideNav = ({
             <ul className="side-nav">
                 <label className="menu-label">
                     LABELS
-                    <i onClick={LabelFormVisibilityHandler} class="fas fa-plus-circle add-icon"></i>
+                    <i onClick={LabelFormVisibilityHandler} className="fas fa-plus-circle add-icon"></i>
                 </label>
                 <li className={`${selectedLabel === 0 ? "selected" : ""}`} onClick={(e) => SelectedLabelHandler(0)} value="0">
                     <i className="fas fa-tag mr-4"></i>All
                 </li>
                 {
                     labelList.map(label => (
-                        <li className={`${selectedLabel === label.id ? "selected" : ""}`} onClick={(e) => SelectedLabelHandler(e.target.value)} value={label.id}>
+                        <li key={label.id} className={`${selectedLabel === label.id ? "selected" : ""}`} onClick={(e) => SelectedLabelHandler(e.target.value)} value={label.id}>
                             <i className={`${label.iconclass} mr-4`}></i>{label.name}
                         </li>
                     ))

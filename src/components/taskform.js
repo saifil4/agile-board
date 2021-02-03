@@ -56,7 +56,7 @@ const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, label
                             </option>
                             {
                                 labelList.map(label => (
-                                    <option value={label.name}>
+                                    <option value={label.name} key={label.id}>
                                         {label.name}
                                     </option>
                                 ))
