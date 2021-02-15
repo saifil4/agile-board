@@ -1,64 +1,28 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 //importing components
 import SideNav from './components/sidenav';
-import Main from './components/main';
+import TaskViewLoader from './components/taskviewloader';
 import LabelForm from './components/labelform';
 
+
+
 function App() {
-  const [navOpenStatus, setNavOpenStatus] = useState(true);
-  const [labelFormShow, setLabelFormShow] = useState(false);
+  const isNavOpen = useSelector(state => state.isNavOpen);
 
-  const [selectedLabel, setSelectedLabel] = useState(0);
-
-  const [labelList, setLabelList] = useState([
-    {
-      'id': 1,
-      'name': 'Bug',
-      'iconclass': 'fas fa-bug'
-    },
-    {
-      'id': 2,
-      'name': 'Story',
-      'iconclass': 'fas fa-th-large'
-    },
-    {
-      'id': 3,
-      'name': 'Task',
-      'iconclass': 'fas fa-tasks'
-    }
-  ]);
   return (
-    <div>
       <main className="wrapper">
-        <section className={`navcontainer ${navOpenStatus ? "" : "closed"}`}>
-          <SideNav
-            setNavOpenStatus={setNavOpenStatus}
-            navOpenStatus={navOpenStatus}
-            labelList={labelList}
-            setLabelFormShow={setLabelFormShow}
-            setLabelList={setLabelList}
-            selectedLabel={selectedLabel}
-            setSelectedLabel={setSelectedLabel} />
+        <section className={`navcontainer ${isNavOpen ? "" : "closed"}`}>
+          <SideNav />
         </section>
-        <section className={`bodycontainer + ${navOpenStatus ? "" : "max"}`}>
+        <section className={`bodycontainer + ${isNavOpen ? "" : "max"}`}>
           <div style={{ overflow: 'auto', height: '100%' }}>
-            <Main
-              setNavOpenStatus={setNavOpenStatus}
-              navOpenStatus={navOpenStatus}
-              labelList={labelList}
-              selectedLabel={selectedLabel} />
+            <TaskViewLoader />
           </div>
         </section>
-        <LabelForm
-          labelFormShow={labelFormShow}
-          setLabelFormShowToClose={() => setLabelFormShow(false)}
-          labelList={labelList}
-          setLabelList={setLabelList}
-        />
+        <LabelForm />
       </main>
-    </div>
   );
 }
 

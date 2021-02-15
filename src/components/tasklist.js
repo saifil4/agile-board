@@ -1,8 +1,10 @@
 import React from 'react';
 import '../App.css';
-import Task from './task'
+import Task from './task';
+import { useSelector } from 'react-redux';
 
-const TaskList = ({ tasks, lane, filteredTasks }) => {
+const TaskList = ({ lane }) => {
+    const filteredTasks = useSelector(state => state.FilteredTasks);
     return (
         <>
             {

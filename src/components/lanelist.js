@@ -4,7 +4,7 @@ import '../App.css';
 //importing components
 import Lane from './lane'
 
-const LaneList = ({ lanes, setLanes, tasks, setTasks, filteredTasks }) => {
+const LaneList = ({ lanes, setLanes }) => {
     // const CreateLane = (e) => {
     //     setLanes([...lanes, {
     //         id: Math.random() * 1000,
@@ -12,18 +12,16 @@ const LaneList = ({ lanes, setLanes, tasks, setTasks, filteredTasks }) => {
     //     }
     //     ]);
     //     console.log(lanes);
-    // }
+    // }      
 
     return (
         <>
+
             {
                 lanes.map(lane => (
                     <Lane
                         key={lane.id}
-                        lane={lane}
-                        tasks={tasks}
-                        setTasks={setTasks}
-                        filteredTasks={filteredTasks} />
+                        lane={lane} />
                 ))
             }
             {/* <div className="addlanecontainer">
@@ -32,6 +30,8 @@ const LaneList = ({ lanes, setLanes, tasks, setTasks, filteredTasks }) => {
                     <i onClick={CreateLane} className="fas fa-plus-circle addlane-icon"></i>
                 </div>
             </div> */}
+
+
         </>
     )
 }

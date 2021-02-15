@@ -1,45 +1,46 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { switchnav, switchlabelformmodal, setSelectedLabel } from '../actions/actions'
 
-const SideNav = ({
-    setNavOpenStatus,
-    navOpenStatus,
-    labelList,
-    setLabelList,
-    setLabelFormShow,
-    selectedLabel,
-    setSelectedLabel }) => {
-    const navStatusHandler = () => {
-        setNavOpenStatus(!navOpenStatus);
-    }
-    const LabelFormVisibilityHandler = () => {
-        setLabelFormShow(true);
-    }
+const SideNav = () => {
 
-    const SelectedLabelHandler = (value) => {
-        setSelectedLabel(value);
+    const selectedLabel = useSelector(state => state.selectedLabel);
+    const labelList = useSelector(state => state.labelList);
+    const Dispatch = useDispatch()
+
+    const labelClass = (labelid) => {
+        return selectedLabel === labelid ? "selected" : ""
     }
 
     return (
         <>
             <div style={{ position: 'relative' }}>
-                <i style={{ position: 'absolute' }} onClick={navStatusHandler} className="fas fa-bars menu-icon mr-5"></i>
-                <h3 className="logo">
-                    <i className="fas fa-check-double mr-2"></i>Board
-                </h3>
+                <i style={{ position: 'absolute' }} onClick={() => Dispatch(switchnav())} className="fas fa-bars menu-icon mr-5"></i>
+                <h4 className="logo">
+                    <i style={{fontSize:"20px"}} className="fas fa-check-double mr-1"></i>Board
+                </h4>
             </div>
             <ul className="side-nav">
                 <label className="menu-label">
                     LABELS
-                    <i onClick={LabelFormVisibilityHandler} className="fas fa-plus-circle add-icon"></i>
+                    <i onClick={() => Dispatch(switchlabelformmodal())}
+                        className="fas fa-plus-circle add-icon">
+                    </i>
                 </label>
-                <li className={`${selectedLabel === 0 ? "selected" : ""}`} onClick={(e) => SelectedLabelHandler(0)} value="0">
-                    <i className="fas fa-tag mr-4"></i>All
+                <li className={labelClass(0)}
+                    onClick={(e) => Dispatch(setSelectedLabel(0))}
+                    value="0">
+                        All
                 </li>
                 {
                     labelList.map(label => (
-                        <li key={label.id} className={`${selectedLabel === label.id ? "selected" : ""}`} onClick={(e) => SelectedLabelHandler(e.target.value)} value={label.id}>
-                            <i className={`${label.iconclass} mr-4`}></i>{label.name}
+                        <li key={label.id}
+                            className={labelClass(label.id)}
+                            onClick={(e) => Dispatch(setSelectedLabel(e.target.value))}
+                            value={label.id}>
+                            <div style={{ 'background': label.color }} class="labelkey mr-3">{label.key}</div>
+                            {/* <i className={`${label.iconclass} mr-4`}></i> */}
+                            {label.name}
                         </li>
                     ))
                 }

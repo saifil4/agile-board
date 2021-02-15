@@ -1,9 +1,15 @@
 import React from 'react';
-import '../App.css';
+import { useSelector, useDispatch } from 'react-redux';
 //importing components
 import TaskList from './tasklist'
+import { addTask } from '../actions/actions'
 
-const Lane = ({ lane, tasks, setTasks, filteredTasks }) => {
+const Lane = ({ lane }) => {
+
+
+    const tasks = useSelector(state => state.Tasks);
+    const Dispatch = useDispatch();
+
     const drop = (e) => {
         e.preventDefault();
         const taskid = e.dataTransfer.getData('task_id');
@@ -13,20 +19,18 @@ const Lane = ({ lane, tasks, setTasks, filteredTasks }) => {
             }
             return task;
         });
-        setTasks(updated);
+        Dispatch(addTask(updated));
     }
     const dragOver = (e) => {
         e.preventDefault();
     }
     return (
         <>
-            <div className="lanecontainer">
+            <div className="lane">
                 <h6 className="lane-title">{lane.lanename}</h6>
-                <div onDrop={drop} onDragOver={dragOver} className="lane">
+                <div onDrop={drop} onDragOver={dragOver} className="lane-body">
                     <TaskList
-                        lane={lane}
-                        tasks={tasks}
-                        filteredTasks={filteredTasks} />
+                        lane={lane} />
                 </div>
             </div>
         </>

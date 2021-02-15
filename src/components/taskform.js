@@ -1,19 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTask } from '../actions/actions'
 
-const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, labelList }) => {
+const TaskForm = ({ setTaskFormShowToClose }) => {
 
     const [taskname, setTaskName] = useState('');
     const [duedate, setDuedate] = useState('');
     const [priority, setPriority] = useState('High');
     const [description, setDescription] = useState('');
-    const [label, setLabel] = useState('');
+    const [label, setLabel] = useState({});
+
+    const labelList = useSelector(state => state.labelList);
+    const tasks = useSelector(state => state.Tasks);
+    const Dispatch = useDispatch();
 
     const CreateTask = (e) => {
         e.preventDefault();
-        setTasks([...tasks, newtask()]);
+        Dispatch(addTask(newtask()));
         setTaskFormShowToClose();
+    }
+
+    const LabelHandler = (e) => {
+        console.log(e.target.value);
+        setLabel(JSON.parse(e.target.value));
     }
 
     function newtask() {
@@ -28,19 +38,8 @@ const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, label
         }
     }
 
-    // functon CheckFormValidity(){
-    //     if()
-    // }
-
-
     return (
-        <Modal
-            show={taskFormShow}
-            onHide={setTaskFormShowToClose}
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
-
+        <>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     New Task
@@ -50,13 +49,13 @@ const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, label
                 <Form>
                     <Form.Group>
                         <Form.Label>Type</Form.Label>
-                        <Form.Control onChange={e => setLabel(e.target.value)} as="select">
+                        <Form.Control as="select" onChange={(e) => LabelHandler(e)}>
                             <option value=''>
-                               Select
+                                Select
                             </option>
                             {
                                 labelList.map(label => (
-                                    <option value={label.name} key={label.id}>
+                                    <option value={JSON.stringify(label)} key={label.id}>
                                         {label.name}
                                     </option>
                                 ))
@@ -67,17 +66,11 @@ const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, label
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Name</Form.Label>
                         <Form.Control onChange={e => setTaskName(e.target.value)} type="text" placeholder="Task Name" />
-                        {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text> */}
                     </Form.Group>
 
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Due date</Form.Label>
                         <Form.Control onChange={e => setDuedate(e.target.value)} type="date" placeholder="Enter due date" />
-                        {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text> */}
                     </Form.Group>
 
                     <Form.Group controlId="exampleForm.ControlSelect2">
@@ -99,7 +92,8 @@ const TaskForm = ({ taskFormShow, setTaskFormShowToClose, tasks, setTasks, label
                 <Button variant="secondary" onClick={setTaskFormShowToClose}>Cancel</Button>
                 <Button variant="primary" onClick={(e) => CreateTask(e)} type="submit">Create Task</Button>
             </Modal.Footer>
-        </Modal>
+        </>
+
     );
 }
 
