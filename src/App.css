@@ -6,29 +6,13 @@
   overflow: hidden;
 }
 
-.navcontainer {
-  width: 220px;
-  height: 100%;
-  z-index: 1;
-  box-shadow: 0px 0px 8px 0px lightgrey;
-  overflow: hidden;
-  transition: 0.3s all;
-}
-
-.navcontainer.closed {
-  width: 0;
-}
-
 .bodycontainer {
-  width: calc(100% - 220px);
+  width: 100%;
   height: 100%;
+  background: #f3f4f7;
   overflow: hidden;
   position: relative;
   transition: 0.3s all;
-}
-
-.bodycontainer.max {
-  width: 100%;
 }
 
 .side-nav {
@@ -103,15 +87,14 @@
 .lane-body {
   height: calc(100% - 20px);
   width: 100%;
-  background: #FAFBFC;
-  border: 1px solid #EBECF0;
+  /* background: #FAFBFC;
+  border: 1px solid #EBECF0; */
   border-radius: 5px;
 }
 
 .filtercontainer {
-  height: 56px;
+  height: 52px;
   width: 100%;
-  padding: 10px;
   position: absolute;
   background-color: white;
 }
@@ -120,6 +103,7 @@
   width: 100%;
   height: calc(100% - 56px);
   margin-top: 56px;
+  padding: 10px 10px 0px 10px;
   display: inline-flex;
 }
 
@@ -136,13 +120,22 @@
   width: 100%;
   height: 20px;
   font-size: 14px;
+  cursor: text;
+  color: #172B4D;
+}
+
+.lane-title i {
+  display: none;
+  float: right;
+}
+
+.lane-title:hover i {
+  display: inline-block;
 }
 
 .logo {
-  text-align: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
   color: #fea025;
+  margin-bottom: 0;
 }
 
 .menu-icon {
@@ -168,18 +161,30 @@
   padding: 2px;
 }
 
-.add-task {
+.main-btn {
   background: #FFA000;
   font-size: 14px;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px 5px 10px;
+  padding: 7px 10px 7px 10px;
   color: white;
   transition: 0.3s ease-in-out;
 }
 
-.add-task:hover {
+.main-btn.yellow {
+  background: #FFA000;
+}
+
+.main-btn.grey {
+  background: #8993A4;
+}
+
+.main-btn.yellow:hover {
   background: #FF8F00;
+}
+
+.main-btn.grey:hover {
+  background: #A5ADBA;
 }
 
 .taskviewercontainer {
@@ -217,13 +222,116 @@
 }
 
 .searchbox {
+  border: 1px solid #c2c2c2;
   border-radius: 5px;
-  background: #f3f4f7;
-  border: none;
   padding: 5px;
-  width: 300px;
+  padding-left: 10px;
+  color: #172B4D;
 }
 
 .searchbox:focus {
-  border: 2px solid #FFA000;
+  outline: none;
+}
+
+.taskcard {
+  padding: 10px 15px;
+  background: white;
+  /* margin: 10px; */
+  margin-bottom: 5px;
+  border: 1px solid #EBECF0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.taskcard:hover {
+  background: #fff9ea !important;
+  border: 1px solid #ffe1bb;
+}
+
+.taskcard .title {
+  color: #42526E;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.pill {
+  padding: 1px 5px 1px 5px;
+  font-size: 13px;
+  display: inline-block;
+  border-radius: 10px;
+  min-width: 60px;
+  text-align: center;
+  margin-bottom: 5px;
+  font-weight: 400;
+}
+
+.taskcard .duedate {
+  color: #8993A4;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.form-label {
+  color: #42526E;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.viewicon {
+  font-size: 18px;
+  color: #8993A4;
+  cursor: pointer;
+}
+
+.viewicon.selected {
+  color: #FFA000;
+}
+
+/* overiding bootstrap */
+
+.form-control {
+  font-size: 14px !important;
+}
+
+.navbar-collapse{
+  justify-content: flex-end;
+}
+
+.add-button {
+  width: 100%;
+  padding: 2px;
+  text-align: center;
+  background: white;
+  border: 1px solid #EBECF0;
+  border-radius: 0.25rem;
+  margin-bottom: 5px;
+  color: #42526E;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background: #FFA000;
+  color: white;
+}
+
+.lane-title-input {
+  width: 100%;
+  margin-bottom: 5px;
+  border: 1.5px solid #9ea1ad;
+  border-radius: 0.25rem;
+  outline: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.lane-title-input.error {
+  border-color: #dc3545;
+  background: #f6d9dc;
+}
+
+.float-right {
+  float: right;
 }

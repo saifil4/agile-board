@@ -6,8 +6,11 @@ import { switchlabelformmodal, addLabel } from '../actions/actions'
 const LabelForm = () => {
 
     const [labelname, setLabelName] = useState('');
+    const [key, setKey] = useState('');
+    const [background, setBackground] = useState('#000000');
+    const [color, setColor] = useState('#ffffff');
     const lableFormModalShow = useSelector(state => state.switchLabelFormModal);
-    const Dispatch = useDispatch()
+    const Dispatch = useDispatch();
 
     const CreateLabel = (e) => {
         e.preventDefault();
@@ -18,8 +21,10 @@ const LabelForm = () => {
     function newLabel() {
         return {
             'id': Math.random() * 1000,
+            'key': key,
             'name': labelname,
-            'iconclass': 'fas fa-tag'
+            'bgcolor': background,
+            'color': color,
         }
     }
 
@@ -42,6 +47,7 @@ const LabelForm = () => {
                         <Form.Label>Id</Form.Label>
                         <Form.Control
                             type="text"
+                            onChange={e => setKey(e.target.value)}
                             maxlength="2"
                             style={{ width: '70px', textTransform: 'uppercase' }}
                             placeholder="Id" />
@@ -55,13 +61,29 @@ const LabelForm = () => {
                             type="text"
                             placeholder="Label Name" />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Color</Form.Label>
-                        <Form.Control
-                            type="color"
-                            maxlength="2"
-                            placeholder="Id" />
-                    </Form.Group>
+                    <div>
+                        <Form.Group style={{ width: '50%,', display: 'inline-block' }}>
+                            <Form.Label>Font Color</Form.Label>
+                            <Form.Control
+                                style={{ width: 'calc(100% - 5px)' }}
+                                type="color"
+                                onChange={e => setColor(e.target.value)}
+                                value={color}
+                                maxlength="2"
+                                placeholder="Id" />
+                        </Form.Group>
+                        <Form.Group style={{ width: '50%', display: 'inline-block' }}>
+                            <Form.Label>Background</Form.Label>
+                            <Form.Control
+                                style={{ width: 'calc(100% - 5px)' }}
+                                type="color"
+                                onChange={e => setBackground(e.target.value)}
+                                value={background}
+                                maxlength="2"
+                                placeholder="Id" />
+                        </Form.Group>
+                    </div>
+
                 </Form>
             </Modal.Body>
             <Modal.Footer>

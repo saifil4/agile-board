@@ -1,15 +1,17 @@
 import React from 'react';
-import '../App.css';
-import Task from './task';
+import Task from './Task';
 import { useSelector } from 'react-redux';
 
 const TaskList = ({ lane }) => {
-    const filteredTasks = useSelector(state => state.FilteredTasks);
+    let filteredTasks = useSelector(state => state.FilteredTasks);
+    // filteredTasks = filteredTasks.sort((a, b) => (a.order > b.order) ? a : ((b.order > a.order) ? -1 : b));
+
     return (
         <>
             {
-                filteredTasks.filter(fil => fil.laneid === lane.id).map(task => (
+                filteredTasks.filter(fil => fil.laneid === lane.id).map((task, index) => (
                     <Task
+                        index={index}
                         key={task.id}
                         task={task}
                         lane={lane} />

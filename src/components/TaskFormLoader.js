@@ -1,13 +1,12 @@
 import React from 'react';
-import TaskViewer from './taskviewer'
-import TaskForm from './taskform'
+import TaskForm from './task-form/TaskForm'
 import { Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchtaskformmodal, taskViewMode } from '../actions/actions'
 
 //This components loads a modal and based on different modes loads different components inside it.
 
-const TaskModalLoader = () => {
+const TaskFormLoader = () => {
     const taskFormModalShow = useSelector(state => state.switchTaskFormModal);
     const viewmode = useSelector(state => state.taskViewMode);
     const Dispatch = useDispatch();
@@ -24,21 +23,16 @@ const TaskModalLoader = () => {
             <Modal
                 show={taskFormModalShow}
                 onHide={() => closeModal()}
-                size="md"
+                size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered>
-                {
-                    viewmode ?
-                        <TaskViewer />
-                        :
-                        <TaskForm
-                            taskFormShow={taskFormModalShow}
-                            setTaskFormShowToClose={() => closeModal()} />
 
-                }
+                <TaskForm
+                    taskFormShow={taskFormModalShow}
+                    setTaskFormShowToClose={() => closeModal()} />
             </Modal>
         </>
     )
 }
 
-export default TaskModalLoader;
+export default TaskFormLoader;

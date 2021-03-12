@@ -38,6 +38,15 @@ export const addTask = (task) => {
     }
 }
 
+
+
+export const deleteTask = (task) => {
+    return {
+        type: 'DeleteTask',
+        payload: task
+    }
+}
+
 export const filterTask = (filteredtasks) => {
     return {
         type: 'FilterTask',
@@ -72,16 +81,27 @@ export const toggleTaskView = () => {
     }
 }
 
-export const cardView = () => {
+
+export const updateLane = (lane) => {
     return {
-        type: 'CardView'
+        type: 'UpdateLane',
+        payload: lane
     }
 }
 
-export const listView = () => {
+export const replaceTasks = (tasks) => {
     return {
-        type: 'ListView'
+        type: 'ReplaceTasks',
+        payload: tasks
     }
 }
+
+export const search = (keywords) => {
+    return {
+        type: 'SetSearchKeywords',
+        payload: keywords
+    }
+}
+
 
 

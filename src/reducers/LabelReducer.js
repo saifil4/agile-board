@@ -3,22 +3,22 @@ const initialState = [
         'id': 1,
         'key': "B",
         'name': 'Bug',
-        'color': '#E53935',
-        'iconclass': 'fas fa-bug'
+        'bgcolor': '#E53935',
+        'color': '#ffffff'
     },
     {
         'id': 2,
         'key': "S",
         'name': 'Story',
-        'color': '#7CB342',
-        'iconclass': 'fas fa-th-large'
+        'bgcolor': '#7CB342',
+        'color': '#ffffff'
     },
     {
         'id': 3,
         'key': "T",
         'name': 'Task',
-        'color': '#1E88E5',
-        'iconclass': 'fas fa-tasks'
+        'bgcolor': '#1E88E5',
+        'color': '#ffffff'
     }
 ];
 
