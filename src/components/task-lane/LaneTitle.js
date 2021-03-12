@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateLane } from '../../actions/actions'
 
 const LaneTitle = ({ lane }) => {
     const [showTextField, setShowTextField] = useState(false);
-    const Lanes = useSelector(state => state.Lanes);
     const Dispatch = useDispatch();
     const [laneName, setLaneName] = useState(lane.lanename);
 

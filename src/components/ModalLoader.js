@@ -20,7 +20,7 @@ const ModalLoader = ({ showModal, setShowModal, Component, entity, entityType })
                 <Component
                     entity={entity}
                     entityType={entityType}
-                    setTaskFormShowToClose={() => closeModal()} />
+                    closeForm={() => closeModal()} />
             </Modal>
         </>
     )

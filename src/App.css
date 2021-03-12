@@ -85,7 +85,7 @@
 }
 
 .lane-body {
-  height: calc(100% - 20px);
+  height: calc(100% - 50px);
   width: 100%;
   /* background: #FAFBFC;
   border: 1px solid #EBECF0; */

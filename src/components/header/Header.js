@@ -1,11 +1,10 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Navbar, Form, } from 'react-bootstrap';
 import { search } from '../../actions/actions'
 import LabelDropdown from './LabelDropdown';
 const Header = () => {
     const Dispatch = useDispatch();
-    const searchKeywords = useSelector(state => state.Search);
 
     return (
         <div className="filtercontainer">

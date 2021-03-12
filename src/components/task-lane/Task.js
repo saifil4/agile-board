@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
-import { setSelectedTask, deleteTask } from '../../actions/actions'
+import { deleteTask } from '../../actions/actions'
 import ModalLoader from '../ModalLoader';
 import TaskForm from '../task-form/TaskForm';
 
@@ -10,11 +10,10 @@ const Task = ({ index, task }) => {
     const Dispatch = useDispatch();
     const Labels = useSelector(state => state.labelList);
     const [showModal, setShowModal] = useState(false);
-    
+
     const OpenTaskModal = (e) => {
         e.preventDefault();
         setShowModal(true);
-        Dispatch(setSelectedTask(task))
     }
 
     const getLabel = () => {
@@ -25,7 +24,7 @@ const Task = ({ index, task }) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        Dispatch(deleteTask(task));
+        Dispatch(deleteTask(task.id));
     }
 
 

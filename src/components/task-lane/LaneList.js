@@ -1,12 +1,42 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { replaceTasks } from '../../actions/actions'
+import { deleteTask } from '../../actions/actions'
 
 //importing components
 import Lane from './Lane'
 
 const LaneList = () => {
+
+    const Lanes = useSelector(state => state.Lanes);
+    const filteredLanes = useSelector(state => state.FilteredLanes);
+
+    const Dispatch = useDispatch();
+
+    const handleDragEnd = (result) => {
+        const lanesourceid = parseInt(result.source.droppableId);
+        const lanedestionationid = parseInt(result.destination.droppableId);
+        const lanedestinationindex = parseInt(result.destination.index);
+        const lanesourceindex = parseInt(result.source.index);
+        const taskid = parseFloat(result.draggableId);
+
+
+        if (lanesourceid !== lanedestionationid) {
+            console.log('different lane')
+            // var newArray = (Lane.slice(0, lanedestinationindex), taskid, Lane.slice(lanedestinationindex + 1, Lane.length)
+        } else {
+            if (lanedestinationindex > lanesourceindex) {
+                console.log('moved down from ' + lanesourceindex + ' to ' + lanedestinationindex);
+            } else if (lanedestinationindex < lanesourceindex) {
+                console.log('moved up from ' + lanesourceindex + ' to ' + lanedestinationindex);
+            }
+        }
+    }
+
+    const DeleteTask = (id) => {
+        Dispatch(deleteTask(id));
+    }
+
     // const CreateLane = (e) => {
     //     setLanes([...lanes, {
     //         id: Math.random() * 1000,
@@ -14,50 +44,13 @@ const LaneList = () => {
     //     }
     //     ]);
     //     console.log(lanes);
-    // }      
-    const Lanes = useSelector(state => state.Lanes);
-    const tasks = useSelector(state => state.Tasks)
-
-    const Dispatch = useDispatch();
-
-
-    // const handleDragEnd = (result) => {
-    //     if (result.source.droppableId !== result.destination.droppableId) {
-    //         Dispatch(changeLane(result));
-    //     } else if (result.source.index !== result.destination.index) {
-    //         Dispatch(changeOrder(result));
-    //     }
-    // }
-
-    const handleDragEnd = (result) => {
-
-        //checking if destination pos is empty
-
-        const lanesourceid = parseInt(result.source.droppableId);
-        const lanedestionationid = parseInt(result.destination.droppableId);
-        const lanedestinationindex = parseInt(result.destination.index);
-
-        const lanesource = tasks.find(task => task.laneid === lanesourceid);
-        const destinationlane = tasks.filter(task => task.laneid === lanedestionationid)[lanedestinationindex];
-
-        let updatedtasks = tasks;
-        if (lanesourceid !== lanedestionationid) {
-            updatedtasks = tasks.map(task => {
-                if (task.id === parseFloat(result.draggableId)) {
-                    return { ...task, laneid: parseInt(lanedestionationid) }
-                }
-                return task;
-            })
-        }
-        Dispatch(replaceTasks(updatedtasks));
-    }
-
+    // }  
 
     return (
         <>
             <DragDropContext onDragEnd={handleDragEnd}>
                 {
-                    Lanes.map(lane => (
+                    filteredLanes.map(lane => (
                         <Lane
                             key={lane.id}
                             lane={lane} />

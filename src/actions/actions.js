@@ -1,28 +1,3 @@
-export const switchnav = () => {
-    return {
-        type: 'SwitchNav'
-    }
-}
-
-export const taskViewMode = (IsViewMode) => {
-    return {
-        type: 'TaskViewMode',
-        payload: IsViewMode
-    }
-}
-
-export const switchlabelformmodal = () => {
-    return {
-        type: 'SwitchLabelFormModal'
-    }
-}
-
-
-export const switchtaskformmodal = () => {
-    return {
-        type: 'SwitchTaskFormModal'
-    }
-}
 
 export const addLabel = (label) => {
     return {
@@ -38,7 +13,12 @@ export const addTask = (task) => {
     }
 }
 
-
+export const updateTask = (task) => {
+    return {
+        type: 'UpdateTask',
+        payload: task
+    }
+}
 
 export const deleteTask = (task) => {
     return {
@@ -47,10 +27,10 @@ export const deleteTask = (task) => {
     }
 }
 
-export const filterTask = (filteredtasks) => {
+export const filterLane = (filteredlanes) => {
     return {
-        type: 'FilterTask',
-        payload: filteredtasks
+        type: 'FilterLane',
+        payload: filteredlanes
     }
 }
 
@@ -68,31 +48,11 @@ export const setSelectedLabel = (label) => {
     }
 }
 
-export const setSelectedTask = (task) => {
-    return {
-        type: 'SetSelectedTask',
-        payload: task
-    }
-}
-
-export const toggleTaskView = () => {
-    return {
-        type: 'ToggleTaskView'
-    }
-}
-
 
 export const updateLane = (lane) => {
     return {
         type: 'UpdateLane',
         payload: lane
-    }
-}
-
-export const replaceTasks = (tasks) => {
-    return {
-        type: 'ReplaceTasks',
-        payload: tasks
     }
 }
 

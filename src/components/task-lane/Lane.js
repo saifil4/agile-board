@@ -28,6 +28,7 @@ const Lane = ({ lane }) => {
                             className="lane-body">
                             <TaskList
                                 lane={lane} />
+                            {provided.placeholder}
                         </div>
                     )}
                 </Droppable>

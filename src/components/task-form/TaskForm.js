@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { addTask } from '../../actions/actions';
+import { addTask, updateTask } from '../../actions/actions';
 import NameInput from './NameInput';
 import TaskTypeInput from './TaskTypeInput';
 import DescriptionInput from './DescriptionInput';
@@ -9,7 +9,7 @@ import LaneInput from './LaneInput';
 import DueDateInput from './DueDateInput';
 import PriorityInput from './PriorityInput';
 
-const TaskForm = ({ setTaskFormShowToClose, entity, entityType }) => {
+const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const [taskname, setTaskName] = useState('');
     const [duedate, setDuedate] = useState('');
@@ -35,15 +35,32 @@ const TaskForm = ({ setTaskFormShowToClose, entity, entityType }) => {
 
     const CreateTask = (e) => {
         e.preventDefault();
-        console.log(newtask());
         Dispatch(addTask(newtask()));
-        setTaskFormShowToClose();
+        closeForm();
+    }
+
+    const UpdateTask1 = (e) => {
+        e.preventDefault();
+        Dispatch(updateTask(updatedtask()));
+        closeForm();
     }
 
 
     function newtask() {
         return {
             'id': Math.random() * 1000,
+            'taskname': taskname,
+            'description': description,
+            'duedate': duedate,
+            'priority': priority,
+            'labelid': labelId,
+            'laneid': laneId
+        }
+    }
+
+    function updatedtask() {
+        return {
+            'id': entity.id,
             'taskname': taskname,
             'description': description,
             'duedate': duedate,
@@ -70,13 +87,6 @@ const TaskForm = ({ setTaskFormShowToClose, entity, entityType }) => {
                                 <DescriptionInput description={description} setDescription={setDescription} />
                             </Col>
                             <Col md="4">
-                                {
-                                    entityType === 'task'
-                                        ?
-                                        <LaneInput laneId={laneId} setLaneId={setLaneId} entity={entity} entityType={entityType} />
-                                        :
-                                        ''
-                                }
                                 <DueDateInput duedate={duedate} setDuedate={setDuedate} />
                                 <PriorityInput priority={priority} setPriority={setPriority} />
                             </Col>
@@ -88,11 +98,11 @@ const TaskForm = ({ setTaskFormShowToClose, entity, entityType }) => {
                 {
                     entityType === "task"
                         ?
-                        <button className="main-btn yellow" onClick={(e) => CreateTask(e)} type="submit">Update Task</button>
+                        <button className="main-btn yellow" onClick={(e) => UpdateTask1(e)} type="submit">Update Task</button>
                         :
                         <button className="main-btn yellow" onClick={(e) => CreateTask(e)} type="submit">Create Task</button>
                 }
-                <button className="main-btn grey" variant="secondary" onClick={setTaskFormShowToClose}>Cancel</button>
+                <button className="main-btn grey" variant="secondary" onClick={closeForm}>Cancel</button>
             </Modal.Footer>
         </>
     );

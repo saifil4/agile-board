@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { switchlabelformmodal, addLabel } from '../actions/actions'
+import { useDispatch } from 'react-redux';
+import { addLabel } from '../actions/actions'
 
-const LabelForm = () => {
+const LabelForm = ({ closeForm }) => {
 
     const [labelname, setLabelName] = useState('');
     const [key, setKey] = useState('');
     const [background, setBackground] = useState('#000000');
     const [color, setColor] = useState('#ffffff');
-    const lableFormModalShow = useSelector(state => state.switchLabelFormModal);
     const Dispatch = useDispatch();
 
     const CreateLabel = (e) => {
         e.preventDefault();
         Dispatch(addLabel(newLabel()))
-        Dispatch(switchlabelformmodal());
+        closeForm();
     }
 
     function newLabel() {
@@ -29,13 +28,7 @@ const LabelForm = () => {
     }
 
     return (
-        <Modal
-            show={lableFormModalShow}
-            onHide={() => Dispatch(switchlabelformmodal())}
-            size="md"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
-
+        <>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     New Label
@@ -87,10 +80,10 @@ const LabelForm = () => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => Dispatch(switchlabelformmodal())}>Cancel</Button>
+                <Button variant="secondary" onClick={() => closeForm()}>Cancel</Button>
                 <Button variant="primary" onClick={(e) => CreateLabel(e)} type="submit">Create Label</Button>
             </Modal.Footer>
-        </Modal>
+        </>
     );
 }
 

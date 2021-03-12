@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { switchlabelformmodal, setSelectedLabel } from '../../actions/actions'
-
+import { setSelectedLabel } from '../../actions/actions'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import ModalLoader from '../ModalLoader';
+import LabelForm from '../LabelForm'
 
 const LabelDropdown = () => {
     const selectedLabel = useSelector(state => state.selectedLabel);
     const labelList = useSelector(state => state.labelList);
+    const [showModal, setShowModal] = useState(false);
     const Dispatch = useDispatch()
+
+    const OpenForm = () => {
+        setShowModal(true);
+    }
 
     const selectedLabelName = () => {
         return selectedLabel !== 0 ? labelList.find(label => label.id === selectedLabel).name : 'All';
@@ -22,14 +27,10 @@ const LabelDropdown = () => {
         }
     }
 
-    const handleFormOpen = () => {
-        Dispatch(switchlabelformmodal())
-    }
-
     return (
         <>
-            <DropdownButton onSelect={(e) => handleLabelChange(e)} bsPrefix="main-btn float-right mr-4"  title={selectedLabelName()}>
-                <Dropdown.Item eventKey={-1} onClick={() => handleFormOpen()}>
+            <DropdownButton menuAlign="right" onSelect={(e) => handleLabelChange(e)} bsPrefix="main-btn float-right" title={selectedLabelName()}>
+                <Dropdown.Item eventKey={-1} onClick={() => OpenForm()}>
                     <i className="fas fa-plus mr-1"></i> New label
                      </Dropdown.Item>
                 <Dropdown.Divider />
@@ -44,6 +45,10 @@ const LabelDropdown = () => {
                     ))
                 }
             </DropdownButton>
+            <ModalLoader
+                showModal={showModal}
+                setShowModal={setShowModal}
+                Component={LabelForm} />
         </>
 
     )
