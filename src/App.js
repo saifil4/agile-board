@@ -3,7 +3,6 @@ import './App.css';
 
 //importing components
 import Main from './components/Main';
-import LabelForm from './components/label-form/LabelForm';
 
 
 function App() {

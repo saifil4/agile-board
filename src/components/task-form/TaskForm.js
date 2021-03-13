@@ -5,7 +5,6 @@ import { addTask, updateTask } from '../../actions/actions';
 import NameInput from './NameInput';
 import TaskTypeInput from './TaskTypeInput';
 import DescriptionInput from './DescriptionInput';
-import LaneInput from './LaneInput';
 import DueDateInput from './DueDateInput';
 import PriorityInput from './PriorityInput';
 
