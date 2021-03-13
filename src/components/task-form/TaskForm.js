@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addTask, updateTask } from '../../actions/actions';
@@ -34,7 +34,6 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
-        console.log(updatedtask())
         Dispatch(updateTask(updatedtask()));
         closeForm();
     }

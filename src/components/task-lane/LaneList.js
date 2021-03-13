@@ -8,7 +8,7 @@ import Lane from './Lane'
 
 const LaneList = () => {
 
-    const Lanes = useSelector(state => state.Lanes);
+    let Lanes = useSelector(state => state.Lanes);
     const filteredLanes = useSelector(state => state.FilteredLanes);
 
     const Dispatch = useDispatch();
@@ -24,11 +24,13 @@ const LaneList = () => {
         const sourceindex = parseInt(result.source.index);
         if (sourceid !== destionationid) {
             let removedTask = null;
-            Lanes.map(lane => {
+            Lanes = Lanes.map(lane => {
                 if (lane.id === sourceid) {
                     removedTask = lane.tasks.splice(sourceindex, 1);
                     removedTask.laneid = destionationid;
+                    return lane;
                 }
+                return lane;
             })
             return Lanes.map(lane => {
                 if (lane.id === destionationid) {
