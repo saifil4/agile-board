@@ -6,7 +6,7 @@ import ModalLoader from '../ModalLoader';
 import LabelForm from '../label-form/LabelForm'
 
 const LabelDropdown = () => {
-    const selectedLabel = useSelector(state => state.selectedLabel);
+    const selectedLabel = useSelector(state => state.SelectedLabel);
     const labelList = useSelector(state => state.labelList);
     const [showModal, setShowModal] = useState(false);
     const Dispatch = useDispatch()

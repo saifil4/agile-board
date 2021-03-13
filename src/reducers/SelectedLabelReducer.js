@@ -1,5 +1,5 @@
 
-const selectedLabelReducer = (state = 0, action) => {
+const SelectedLabelReducer = (state = 0, action) => {
     switch (action.type) {
         case 'SetSelectedLabel':
             return action.payload;
@@ -8,4 +8,4 @@ const selectedLabelReducer = (state = 0, action) => {
     }
 }
 
-export default selectedLabelReducer;
+export default SelectedLabelReducer;

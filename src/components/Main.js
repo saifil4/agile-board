@@ -7,7 +7,7 @@ import Header from './header/Header';
 import LaneList from './task-lane/LaneList';
 
 const Main = () => {
-    const selectedLabel = useSelector(state => state.selectedLabel);
+    const selectedLabel = useSelector(state => state.SelectedLabel);
     const lanes = useSelector(state => state.Lanes);
     const searchKeywords = useSelector(state => state.Search);
     const Dispatch = useDispatch();
