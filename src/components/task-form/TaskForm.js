@@ -10,27 +10,21 @@ import PriorityInput from './PriorityInput';
 
 const TaskForm = ({ closeForm, entity, entityType }) => {
 
-    const [taskname, setTaskName] = useState('');
-    const [duedate, setDuedate] = useState('');
-    const [priority, setPriority] = useState('High');
-    const [description, setDescription] = useState('');
-    const [labelId, setLabelId] = useState();
-    const [laneId, setLaneId] = useState();
+    const [taskname, setTaskName] = useState(entity.taskname);
+    const [duedate, setDuedate] = useState(entity.duedate);
+    const [priority, setPriority] = useState(entity.priority);
+    const [description, setDescription] = useState(entity.description);
+    const [labelId, setLabelId] = useState(entity.labelid);
 
     const Dispatch = useDispatch();
 
-    useEffect(() => {
+    const getLaneId = () => {
         if (entityType === "task") {
-            setTaskName(entity.taskname);
-            setDuedate(entity.duedate);
-            setPriority(entity.priority);
-            setDescription(entity.description);
-            setLabelId(entity.labelid);
-            setLaneId(entity.laneid);
+            return entity.laneid;
         } else if (entityType === "lane") {
-            setLaneId(entity.id);
+            return (entity.id);
         }
-    }, [])
+    }
 
     const CreateTask = (e) => {
         e.preventDefault();
@@ -40,6 +34,7 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
+        console.log(updatedtask())
         Dispatch(updateTask(updatedtask()));
         closeForm();
     }
@@ -51,9 +46,9 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
             'taskname': taskname,
             'description': description,
             'duedate': duedate,
-            'priority': priority,
+            'priority': JSON.parse(priority),
             'labelid': labelId,
-            'laneid': laneId
+            'laneid': getLaneId()
         }
     }
 
@@ -63,9 +58,9 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
             'taskname': taskname,
             'description': description,
             'duedate': duedate,
-            'priority': priority,
+            'priority': JSON.parse(priority),
             'labelid': labelId,
-            'laneid': laneId
+            'laneid': getLaneId()
         }
     }
 
