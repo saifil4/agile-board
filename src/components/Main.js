@@ -6,7 +6,7 @@ import { filterLane } from '../actions/actions'
 import Header from './header/Header';
 import LaneList from './task-lane/LaneList';
 
-const TaskViewLoader = () => {
+const Main = () => {
     const selectedLabel = useSelector(state => state.selectedLabel);
     const lanes = useSelector(state => state.Lanes);
     const searchKeywords = useSelector(state => state.Search);
@@ -33,11 +33,9 @@ const TaskViewLoader = () => {
     return (
         <>
             <Header />
-            <div className="lanecontainer">
-                <LaneList />
-            </div>
+            <LaneList />
         </>
     );
 }
 
-export default TaskViewLoader;
+export default Main;

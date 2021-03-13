@@ -49,10 +49,17 @@ export const setSelectedLabel = (label) => {
 }
 
 
-export const updateLane = (lane) => {
+export const updateLaneName = (lane) => {
     return {
-        type: 'UpdateLane',
+        type: 'UpdateLaneName',
         payload: lane
+    }
+}
+
+export const updateLanes = (lanes) => {
+    return {
+        type: 'UpdateLanes',
+        payload: lanes
     }
 }
 

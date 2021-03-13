@@ -109,10 +109,9 @@ const LanesReducer = (state = initialState, action) => {
         case 'AddLane':
             // return [...state, action.payload];
             break
-        case 'RemoveLane':
-
-            break;
-        case 'UpdateLane':
+        case 'UpdateLanes':
+            return action.payload;
+        case 'UpdateLaneName':
             return state.map(st => {
                 if (st.id === action.payload.id) {
                     return { ...st, lanename: action.payload.lanename };

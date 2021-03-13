@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { deleteTask } from '../../actions/actions'
+import { updateLanes } from '../../actions/actions'
 
 //importing components
 import Lane from './Lane'
@@ -14,58 +14,57 @@ const LaneList = () => {
     const Dispatch = useDispatch();
 
     const handleDragEnd = (result) => {
-        const lanesourceid = parseInt(result.source.droppableId);
-        const lanedestionationid = parseInt(result.destination.droppableId);
-        const lanedestinationindex = parseInt(result.destination.index);
-        const lanesourceindex = parseInt(result.source.index);
-        const taskid = parseFloat(result.draggableId);
+        Dispatch(updateLanes(UpdatedLanes(result)));
+    }
 
-
-        if (lanesourceid !== lanedestionationid) {
-            console.log('different lane')
-            // var newArray = (Lane.slice(0, lanedestinationindex), taskid, Lane.slice(lanedestinationindex + 1, Lane.length)
+    const UpdatedLanes = (result) => {
+        const sourceid = parseInt(result.source.droppableId);
+        const destionationid = parseInt(result.destination.droppableId);
+        const destinationindex = parseInt(result.destination.index);
+        const sourceindex = parseInt(result.source.index);
+        if (sourceid !== destionationid) {
+            let removedTask = null;
+            Lanes.map(lane => {
+                if (lane.id === sourceid) {
+                    removedTask = lane.tasks.splice(sourceindex, 1);
+                    removedTask.laneid = destionationid;
+                }
+            })
+            return Lanes.map(lane => {
+                if (lane.id === destionationid) {
+                    let copiedtasks = lane.tasks;
+                    copiedtasks.splice(destinationindex, 0, removedTask);
+                    return { ...lane, tasks: [].concat.apply([], copiedtasks) };
+                }
+                return lane;
+            });
         } else {
-            if (lanedestinationindex > lanesourceindex) {
-                console.log('moved down from ' + lanesourceindex + ' to ' + lanedestinationindex);
-            } else if (lanedestinationindex < lanesourceindex) {
-                console.log('moved up from ' + lanesourceindex + ' to ' + lanedestinationindex);
-            }
+            return Lanes.map(lane => {
+                if (lane.id === destionationid) {
+                    let copiedtasks = lane.tasks;
+                    const removedTask = copiedtasks.splice(sourceindex, 1);
+                    copiedtasks.splice(destinationindex, 0, removedTask);
+                    console.log(copiedtasks);
+                    return { ...lane, tasks: [].concat.apply([], copiedtasks) };
+                }
+                return lane;
+            });
         }
     }
 
-    const DeleteTask = (id) => {
-        Dispatch(deleteTask(id));
-    }
-
-    // const CreateLane = (e) => {
-    //     setLanes([...lanes, {
-    //         id: Math.random() * 1000,
-    //         lanename: 'Demo Lane'
-    //     }
-    //     ]);
-    //     console.log(lanes);
-    // }  
-
     return (
         <>
-            <DragDropContext onDragEnd={handleDragEnd}>
-                {
-                    filteredLanes.map(lane => (
-                        <Lane
-                            key={lane.id}
-                            lane={lane} />
-                    ))
-                }
-            </DragDropContext>
-
-            {/* <div className="addlanecontainer">
-                <h6 className="lane-title"></h6>
-                <div className="addlane">
-                    <i onClick={CreateLane} className="fas fa-plus-circle addlane-icon"></i>
-                </div>
-            </div> */}
-
-
+            <div className="lanecontainer">
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    {
+                        filteredLanes.map(lane => (
+                            <Lane
+                                key={lane.id}
+                                lane={lane} />
+                        ))
+                    }
+                </DragDropContext>
+            </div>
         </>
     )
 }

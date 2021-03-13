@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedLabel } from '../../actions/actions'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import ModalLoader from '../ModalLoader';
-import LabelForm from '../LabelForm'
+import LabelForm from '../label-form/LabelForm'
 
 const LabelDropdown = () => {
     const selectedLabel = useSelector(state => state.selectedLabel);

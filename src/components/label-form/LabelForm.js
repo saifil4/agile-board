@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { addLabel } from '../actions/actions'
+import { addLabel } from '../../actions/actions'
 
 const LabelForm = ({ closeForm }) => {
 
@@ -30,7 +30,7 @@ const LabelForm = ({ closeForm }) => {
     return (
         <>
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <Modal.Title as="h6" id="contained-modal-title-vcenter">
                     New Label
                 </Modal.Title>
             </Modal.Header>
@@ -55,7 +55,7 @@ const LabelForm = ({ closeForm }) => {
                             placeholder="Label Name" />
                     </Form.Group>
                     <div>
-                        <Form.Group style={{ width: '50%,', display: 'inline-block' }}>
+                        <Form.Group style={{ width: '50%', display: 'inline-block' }}>
                             <Form.Label>Font Color</Form.Label>
                             <Form.Control
                                 style={{ width: 'calc(100% - 5px)' }}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateLane } from '../../actions/actions'
+import { updateLaneName } from '../../actions/actions'
 
 const LaneTitle = ({ lane }) => {
     const [showTextField, setShowTextField] = useState(false);
@@ -9,7 +9,7 @@ const LaneTitle = ({ lane }) => {
 
     const updateLaneAndClose = () => {
         if (laneName) {
-            Dispatch(updateLane(getUpdatedLane()));
+            Dispatch(updateLaneName(getUpdatedLane()));
             setShowTextField(false);
         }
     }
