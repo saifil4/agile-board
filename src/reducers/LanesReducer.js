@@ -38,7 +38,7 @@ const initialState = [
             {
                 id: Math.random() * 1000,
                 labelid: 3,
-                taskname: 'Design Protottype for Blog Page',
+                taskname: 'Design Prototype for Blog Page',
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
                 priority: {
