@@ -8,7 +8,7 @@ const TaskTypeInput = ({ labelId, setLabelId }) => {
     return (
         <Form.Group>
             <Form.Label className="form-label">Type</Form.Label>
-            <Form.Control value={labelId} as="select" onChange={(e) => setLabelId(parseInt(e.target.value))}>
+            <Form.Control value={labelId} as="select" onChange={(e) => setLabelId(parseFloat(e.target.value))}>
                 <option value=''> Select </option>
                 {
                     labelList.map(label => (

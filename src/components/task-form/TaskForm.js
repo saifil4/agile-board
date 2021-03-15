@@ -18,14 +18,6 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const Dispatch = useDispatch();
 
-    const getLaneId = () => {
-        if (entityType === "task") {
-            return entity.laneid;
-        } else if (entityType === "lane") {
-            return (entity.id);
-        }
-    }
-
     const CreateTask = (e) => {
         e.preventDefault();
         Dispatch(addTask(newtask()));
@@ -34,6 +26,7 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
+        console.log(updatedtask());
         Dispatch(updateTask(updatedtask()));
         closeForm();
     }
@@ -47,20 +40,21 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
             'duedate': duedate,
             'priority': JSON.parse(priority),
             'labelid': labelId,
-            'laneid': getLaneId()
+            'laneid': entity.id
         }
     }
 
     function updatedtask() {
-        return {
+        var task = {
             'id': entity.id,
             'taskname': taskname,
             'description': description,
             'duedate': duedate,
-            'priority': JSON.parse(priority),
+            'priority': priority,
             'labelid': labelId,
-            'laneid': getLaneId()
+            'laneid': entity.laneid
         }
+        return task;
     }
 
     return (

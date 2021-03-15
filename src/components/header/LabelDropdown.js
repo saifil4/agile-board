@@ -16,13 +16,13 @@ const LabelDropdown = () => {
     }
 
     const selectedLabelName = () => {
+        console.log(selectedLabel);
         return selectedLabel !== 0 ? labelList.find(label => label.id === selectedLabel).name : 'All';
     }
 
     const handleLabelChange = (e) => {
-        const labelid = parseInt(e);
+        const labelid = parseFloat(e);
         if (labelid !== -1) {
-            console.log('im in')
             Dispatch(setSelectedLabel(labelid))
         }
     }
