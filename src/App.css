@@ -58,6 +58,8 @@
   width: 275px;
   margin: 0px 10px 0px 10px;
   padding-bottom: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .addlanecontainer {
@@ -96,7 +98,6 @@
   height: calc(100% - 56px);
   margin-top: 56px;
   padding: 10px 10px 0px 10px;
-  display: inline-flex;
 }
 
 .addlane-icon {
@@ -240,6 +241,16 @@
   border: 1px solid #ffe1bb;
 }
 
+.delete-icon {
+  font-size: 0;
+  cursor: pointer;
+  transition: 0.1s all;
+}
+
+.taskcard:hover .delete-icon {
+  font-size: 14px;
+}
+
 .taskcard .title {
   color: #42526E;
   margin-bottom: 5px;
@@ -287,7 +298,7 @@
   font-size: 14px !important;
 }
 
-.navbar-collapse{
+.navbar-collapse {
   justify-content: flex-end;
 }
 

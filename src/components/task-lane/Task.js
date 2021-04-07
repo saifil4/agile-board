@@ -51,7 +51,7 @@ const Task = ({ index, task }) => {
                         </div>
                         <div className="duedate">
                             {task.duedate}
-                            <i onClick={e => handleDelete(e)} className="fas fa-ellipsis-v float-right"></i>
+                            <i onClick={e => handleDelete(e)} className="fas fa-trash float-right delete-icon"></i>
                         </div>
                     </div>
                 )}

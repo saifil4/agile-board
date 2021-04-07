@@ -1,10 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Navbar, Form, } from 'react-bootstrap';
-import { search } from '../../actions/actions'
 import LabelDropdown from './LabelDropdown';
+import Search from './Search'
 const Header = () => {
-    const Dispatch = useDispatch();
 
     return (
         <div className="filtercontainer">
@@ -15,7 +13,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Form inline>
-                        <input type="text" className="searchbox mr-4" onChange={(e) => Dispatch(search(e.target.value))} placeholder="Search" />
+                        <Search />
                         <LabelDropdown />
                     </Form>
                 </Navbar.Collapse>
