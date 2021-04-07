@@ -12,7 +12,7 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const [taskname, setTaskName] = useState(entity.taskname);
     const [duedate, setDuedate] = useState(entity.duedate);
-    const [priority, setPriority] = useState(entity.priority);
+    const [priority, setPriority] = useState(entityType === 'task' ? entity.priority : 3);
     const [description, setDescription] = useState(entity.description);
     const [labelId, setLabelId] = useState(entity.labelid);
 
@@ -26,7 +26,6 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
-        console.log(updatedtask());
         Dispatch(updateTask(updatedtask()));
         closeForm();
     }
@@ -38,7 +37,7 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
             'taskname': taskname,
             'description': description,
             'duedate': duedate,
-            'priority': JSON.parse(priority),
+            'priority': priority,
             'labelid': labelId,
             'laneid': entity.id
         }

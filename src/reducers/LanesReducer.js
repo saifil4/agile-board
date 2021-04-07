@@ -9,11 +9,7 @@ const initialState = [
                 taskname: 'Misspelling on Navbar',
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'High',
-                    value: '3',
-                    color: '#e01c13'
-                },
+                priority: 3,
                 laneid: 1
             }
         ]
@@ -28,11 +24,7 @@ const initialState = [
                 taskname: 'Add Task button hidden in Mobile view',
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'Low',
-                    value: '1',
-                    color: '#abcd38'
-                },
+                priority: 1,
                 laneid: 2
             },
             {
@@ -41,11 +33,7 @@ const initialState = [
                 taskname: 'Design Prototype for Blog Page',
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'Medium',
-                    value: '2',
-                    color: '#f6b32d'
-                },
+                priority: 2,
                 laneid: 2,
                 order: 1
             },
@@ -55,11 +43,7 @@ const initialState = [
                 taskname: 'Update Header',
                 description: 'Distribute header into multiple components',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'Low',
-                    value: '1',
-                    color: '#abcd38'
-                },
+                priority: 1,
                 laneid: 2
             }
         ]
@@ -74,11 +58,7 @@ const initialState = [
                 taskname: 'Component Redesign',
                 description: 'Distribute header into multiple components',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'Medium',
-                    value: '2',
-                    color: '#f6b32d'
-                },
+                priority: 2,
                 laneid: 3
             }
         ]
@@ -93,11 +73,7 @@ const initialState = [
                 taskname: 'Change Task Form Format',
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
-                priority: {
-                    name: 'Medium',
-                    value: '2',
-                    color: '#f6b32d'
-                },
+                priority: 2,
                 laneid: 4
             },
         ]

@@ -16,6 +16,31 @@ const Task = ({ index, task }) => {
         setShowModal(true);
     }
 
+    const priorityList = [
+        {
+            name: 'High',
+            value: 3,
+            color: '#e01c13'
+        },
+        {
+            name: 'Medium',
+            value: 2,
+            color: '#f6b32d'
+        },
+        {
+            name: 'Low',
+            value: 1,
+            color: '#abcd38'
+        }
+    ];
+
+    const priorityColor = () => {
+        return priorityList.find(pl => pl.value === task.priority).color;
+    }
+    const priorityName = () => {
+        return priorityList.find(pl => pl.value === task.priority).name;
+    }
+
     const getLabel = () => {
         return Labels.find(label => label.id === task.labelid);
     }
@@ -43,7 +68,7 @@ const Task = ({ index, task }) => {
                         className="taskcard"
                         onClick={(e) => OpenTaskModal(e)}>
                         <div className="title">
-                            <i title={`Priority: ${task.priority.name}`} style={{ color: task.priority.color }} className="fas fa-circle mr-1"></i>
+                            <i title={`Priority: ${priorityName()}`} style={{ color: priorityColor() }} className="fas fa-circle mr-1"></i>
                             {task.taskname}
                         </div>
                         <div style={{ 'background': Label.bgcolor, color: Label.color }} className="pill">
