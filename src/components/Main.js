@@ -119,7 +119,7 @@ const Main = () => {
     return (
         <>
             <Header setSelectedLabel={setSelectedLabel} setSearchValue={setSearchValue} />
-            <LaneList filteredLanes={filteredLanes} setFilteredLanes={setFilteredLanes} />
+            <LaneList filteredLanes={filteredLanes} setFilteredLanes={setFilteredLanes} setLanes={setLanes} />
         </>
     );
 }

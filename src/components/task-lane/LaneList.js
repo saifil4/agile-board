@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
-import { updateLanes } from '../../actions/actions'
 
 //importing components
 import Lane from './Lane'
 
-const LaneList = ({ filteredLanes, setFilteredLanes }) => {
+const LaneList = ({ filteredLanes, setFilteredLanes, setLanes }) => {
 
     const handleDragEnd = (result) => {
         setFilteredLanes(UpdatedLanes(result));
@@ -56,6 +54,7 @@ const LaneList = ({ filteredLanes, setFilteredLanes }) => {
                     {
                         filteredLanes.map(lane => (
                             <Lane
+                                setLanes={setLanes}
                                 key={lane.id}
                                 lane={lane} />
                         ))

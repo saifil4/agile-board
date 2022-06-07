@@ -1,18 +1,40 @@
 import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
-
-import TaskList from './TaskList'
 import LaneTitle from './LaneTitle';
 import ModalLoader from '../ModalLoader';
 import TaskForm from '../task-form/TaskForm';
+import Task from './Task';
 
 
-const Lane = ({ lane }) => {
+const Lane = ({ lane, setLanes }) => {
     const [showModal, setShowModal] = useState(false);
 
     const OpenTaskModal = (e) => {
         e.preventDefault();
         setShowModal(true);
+    }
+
+
+    const addTask = (newTask) => {
+        setLanes((prev) => {
+            return prev.map(ln => {
+                if (ln.id === lane.id) {
+                    return { ...ln, tasks: [...ln.tasks, newTask] }
+                }
+                return ln
+            })
+        })
+    }
+
+    const updateTask = (updatedTask) => {
+        setLanes((prev) => {
+            return prev.map(ln => {
+                if (ln.id === lane.id) {
+                    return { ...ln, tasks: ln.tasks.map(task => task.id === updatedTask.id ? updatedTask : task) }
+                }
+                return ln
+            })
+        })
     }
 
     return (
@@ -26,8 +48,17 @@ const Lane = ({ lane }) => {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                             className="lane-body">
-                            <TaskList
-                                lane={lane} />
+                            {
+                                lane.tasks.map((task, index) => (
+                                    <Task
+                                        index={index}
+                                        addTask={addTask}
+                                        updateTask={updateTask}
+                                        key={task.id}
+                                        task={task}
+                                        lane={lane} />
+                                ))
+                            }
                             {provided.placeholder}
                         </div>
                     )}

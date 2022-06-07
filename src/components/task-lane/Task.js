@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteTask } from '../../actions/actions'
-import ModalLoader from '../ModalLoader';
-import TaskForm from '../task-form/TaskForm';
 import TaskModal from '../TaskModal';
 
-const Task = ({ index, task }) => {
+const Task = ({ index, task, addTask, updateTask }) => {
 
     const Dispatch = useDispatch();
     const Labels = useSelector(state => state.labelList);
@@ -87,6 +85,9 @@ const Task = ({ index, task }) => {
                 )}
             </Draggable>
             <TaskModal
+                task={task}
+                addTask={addTask}
+                updateTask={updateTask}
                 showModal={showModal}
                 closeModal={closeModal} />
         </>

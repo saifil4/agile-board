@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Form, Container, Row, Col } from 'react-bootstrap';
 
-const TaskModal = ({ showModal, closeModal }) => {
+const defaultTask = {
+    labelid: 1,
+    taskname: '',
+    description: '',
+    duedate: '',
+    priority: 1,
+}
 
-    const [task, setTask] = useState(
-        {
-            id: Math.random() * 1000,
-            labelid: 1,
-            taskname: 'Misspelling on Navbar',
-            description: 'this is a demo description',
-            duedate: '2021-02-12',
-            priority: 3,
-            laneid: 1
-        }
-    )
+const TaskModal = ({ showModal, closeModal, task }) => {
+
+    const [selectedTask, setSelectedTasks] = useState(task ? task : defaultTask);
 
     return (
+        
         <>
             <Modal
                 show={showModal}
