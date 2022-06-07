@@ -25,7 +25,6 @@ const initialState = [
 const LabelReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'AddLabel':
-            console.log([...state, action.payload])
             return [...state, action.payload];
         case 'UpdateLabel':
 

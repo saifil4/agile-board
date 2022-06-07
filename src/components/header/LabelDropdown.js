@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedLabel } from '../../actions/actions'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import ModalLoader from '../ModalLoader';
 import LabelForm from '../label-form/LabelForm'
 
-const LabelDropdown = () => {
+const LabelDropdown = ({setSelectedLabel}) => {
     const selectedLabel = useSelector(state => state.SelectedLabel);
     const labelList = useSelector(state => state.labelList);
     const [showModal, setShowModal] = useState(false);
-    const Dispatch = useDispatch()
 
     const OpenForm = () => {
         setShowModal(true);
@@ -23,7 +21,7 @@ const LabelDropdown = () => {
     const handleLabelChange = (e) => {
         const labelid = parseFloat(e);
         if (labelid !== -1) {
-            Dispatch(setSelectedLabel(labelid))
+            setSelectedLabel(labelid)
         }
     }
 

@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 import { Modal } from 'react-bootstrap';
 const ModalLoader = ({ showModal, setShowModal, Component, entity, entityType }) => {
 

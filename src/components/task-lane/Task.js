@@ -4,6 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { deleteTask } from '../../actions/actions'
 import ModalLoader from '../ModalLoader';
 import TaskForm from '../task-form/TaskForm';
+import TaskModal from '../TaskModal';
 
 const Task = ({ index, task }) => {
 
@@ -11,9 +12,13 @@ const Task = ({ index, task }) => {
     const Labels = useSelector(state => state.labelList);
     const [showModal, setShowModal] = useState(false);
 
-    const OpenTaskModal = (e) => {
+    const openModal = (e) => {
         e.preventDefault();
         setShowModal(true);
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
     }
 
     const priorityList = [
@@ -66,7 +71,7 @@ const Task = ({ index, task }) => {
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                         className="taskcard"
-                        onClick={(e) => OpenTaskModal(e)}>
+                        onClick={(e) => openModal(e)}>
                         <div className="title">
                             <i title={`Priority: ${priorityName()}`} style={{ color: priorityColor() }} className="fas fa-circle mr-1"></i>
                             {task.taskname}
@@ -81,13 +86,9 @@ const Task = ({ index, task }) => {
                     </div>
                 )}
             </Draggable>
-            <ModalLoader
+            <TaskModal
                 showModal={showModal}
-                setShowModal={setShowModal}
-                Component={TaskForm}
-                entity={task}
-                entityType="task"
-            />
+                closeModal={closeModal} />
         </>
     )
 }

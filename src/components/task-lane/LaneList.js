@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { updateLanes } from '../../actions/actions'
@@ -6,15 +6,10 @@ import { updateLanes } from '../../actions/actions'
 //importing components
 import Lane from './Lane'
 
-const LaneList = () => {
-
-    let Lanes = useSelector(state => state.Lanes);
-    const filteredLanes = useSelector(state => state.FilteredLanes);
-
-    const Dispatch = useDispatch();
+const LaneList = ({ filteredLanes, setFilteredLanes }) => {
 
     const handleDragEnd = (result) => {
-        Dispatch(updateLanes(UpdatedLanes(result)));
+        setFilteredLanes(UpdatedLanes(result));
     }
 
     const UpdatedLanes = (result) => {
@@ -24,7 +19,7 @@ const LaneList = () => {
         const sourceindex = parseInt(result.source.index);
         if (sourceid !== destionationid) {
             let removedTask = null;
-            Lanes = Lanes.map(lane => {
+            filteredLanes = filteredLanes.map(lane => {
                 if (lane.id === sourceid) {
                     removedTask = lane.tasks.splice(sourceindex, 1);
                     removedTask.laneid = destionationid;
@@ -32,7 +27,7 @@ const LaneList = () => {
                 }
                 return lane;
             })
-            return Lanes.map(lane => {
+            return filteredLanes.map(lane => {
                 if (lane.id === destionationid) {
                     let copiedtasks = lane.tasks;
                     copiedtasks.splice(destinationindex, 0, removedTask);
@@ -41,7 +36,7 @@ const LaneList = () => {
                 return lane;
             });
         } else {
-            return Lanes.map(lane => {
+            return filteredLanes.map(lane => {
                 if (lane.id === destionationid) {
                     let copiedtasks = lane.tasks;
                     const removedTask = copiedtasks.splice(sourceindex, 1);

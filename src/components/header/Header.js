@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Form, } from 'react-bootstrap';
 import LabelDropdown from './LabelDropdown';
 import Search from './Search'
-const Header = () => {
+const Header = ({ setSearchValue, setSelectedLabel }) => {
 
     return (
         <div className="filtercontainer">
@@ -13,8 +13,8 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Form inline>
-                        <Search />
-                        <LabelDropdown />
+                        <Search setSearchValue={setSearchValue} />
+                        <LabelDropdown setSelectedLabel={setSelectedLabel} />
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
