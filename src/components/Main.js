@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterLane } from '../actions/actions'
+import { filterLane } from '../actions/actions';
+
+import { db } from '../firebase'
+import { collection, addDoc, Timestamp, getDocs } from 'firebase/firestore'
 
 //importing components
 import Header from './header/Header';
@@ -12,6 +15,19 @@ const Main = () => {
     const [selectedLabel, setSelectedLabel] = useState();
 
     const Dispatch = useDispatch();
+
+    useEffect(() => {
+        getData()
+    }, []);
+
+    const getData = async() => {
+        try {
+            const res = await getDocs();
+            console.log(res);
+        } catch (err) {
+
+        }
+    }
 
     let [lanes, setLanes] = useState([
         {

@@ -4,14 +4,19 @@ import LaneTitle from './LaneTitle';
 import ModalLoader from '../ModalLoader';
 import TaskForm from '../task-form/TaskForm';
 import Task from './Task';
+import TaskModal from '../TaskModal';
 
 
 const Lane = ({ lane, setLanes }) => {
     const [showModal, setShowModal] = useState(false);
 
-    const OpenTaskModal = (e) => {
+    const openModal = (e) => {
         e.preventDefault();
         setShowModal(true);
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
     }
 
 
@@ -41,7 +46,7 @@ const Lane = ({ lane, setLanes }) => {
         <>
             <div className="lane">
                 <LaneTitle lane={lane} />
-                <div onClick={(e) => OpenTaskModal(e)} className="add-button"><i className="fas fa-plus"></i></div>
+                <div onClick={(e) => openModal(e)} className="add-button"><i className="fas fa-plus"></i></div>
                 <Droppable droppableId={lane.id.toString()} key={lane.id}>
                     {(provided) => (
                         <div
@@ -52,11 +57,9 @@ const Lane = ({ lane, setLanes }) => {
                                 lane.tasks.map((task, index) => (
                                     <Task
                                         index={index}
-                                        addTask={addTask}
                                         updateTask={updateTask}
                                         key={task.id}
-                                        task={task}
-                                        lane={lane} />
+                                        task={task} />
                                 ))
                             }
                             {provided.placeholder}
@@ -64,14 +67,10 @@ const Lane = ({ lane, setLanes }) => {
                     )}
                 </Droppable>
             </div>
-
-            <ModalLoader
+            <TaskModal
+                save={addTask}
                 showModal={showModal}
-                setShowModal={setShowModal}
-                Component={TaskForm}
-                entity={lane}
-                entityType="lane"
-            />
+                closeModal={closeModal} />
         </>
     )
 }

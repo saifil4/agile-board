@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import { deleteTask } from '../../actions/actions'
 import TaskModal from '../TaskModal';
 
-const Task = ({ index, task, addTask, updateTask }) => {
+const Task = ({ index, task, updateTask }) => {
 
     const Dispatch = useDispatch();
     const Labels = useSelector(state => state.labelList);
@@ -86,8 +86,7 @@ const Task = ({ index, task, addTask, updateTask }) => {
             </Draggable>
             <TaskModal
                 task={task}
-                addTask={addTask}
-                updateTask={updateTask}
+                save={updateTask}
                 showModal={showModal}
                 closeModal={closeModal} />
         </>

@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Form, Container, Row, Col } from 'react-bootstrap';
+import TaskTypeInput from './task-form/TaskTypeInput';
+import NameInput from './task-form/NameInput';
+import DescriptionInput from './task-form/DescriptionInput';
+import DueDateInput from './task-form/DueDateInput';
+import PriorityInput from './task-form/PriorityInput';
 
 const defaultTask = {
+    id: Math.random(),
     labelid: 1,
     taskname: '',
     description: '',
@@ -10,12 +16,22 @@ const defaultTask = {
     priority: 1,
 }
 
-const TaskModal = ({ showModal, closeModal, task }) => {
+const TaskModal = ({ showModal, closeModal, task = null, save }) => {
 
-    const [selectedTask, setSelectedTasks] = useState(task ? task : defaultTask);
+    const [selectedTask, setSelectedTask] = useState(task ? task : defaultTask);
+
+    const handleSave = () => {
+        save(selectedTask);
+        closeModal()
+    }
+
+    const handleClose = () => {
+        if (task) setSelectedTask(task)
+        closeModal()
+    }
 
     return (
-        
+
         <>
             <Modal
                 show={showModal}
@@ -33,40 +49,31 @@ const TaskModal = ({ showModal, closeModal, task }) => {
                         <Container>
                             <Row>
                                 <Col md="8">
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Type</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter Type" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label>Name</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control type="text" as="textarea" placeholder="Description" />
-                                    </Form.Group>
-
+                                    <TaskTypeInput
+                                        value={selectedTask.labelid}
+                                        onChange={(e) => setSelectedTask({ ...selectedTask, labelid: parseInt(e.target.value) })} />
+                                    <NameInput
+                                        value={selectedTask.taskname}
+                                        onChange={(e) => setSelectedTask({ ...selectedTask, taskname: e.target.value })} />
+                                    <DescriptionInput
+                                        value={selectedTask.description}
+                                        onChange={(e) => setSelectedTask({ ...selectedTask, description: e.target.value })} />
                                 </Col>
                                 <Col md="4">
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                                        <Form.Label>Due date</Form.Label>
-                                        <Form.Control type="date" placeholder="Enter email" />
-                                    </Form.Group>
-
-                                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                                        <Form.Label>Priority</Form.Label>
-                                        <Form.Control type="password" placeholder="Password" />
-                                    </Form.Group>
+                                    <DueDateInput
+                                        value={selectedTask.duedate}
+                                        onChange={(e) => setSelectedTask({ ...selectedTask, duedate: e.target.value })} />
+                                    <PriorityInput
+                                        value={selectedTask.priority}
+                                        onChange={(e) => setSelectedTask({ ...selectedTask, priority: parseInt(e.target.value) })} />
                                 </Col>
                             </Row>
                         </Container>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button className="main-btn yellow" type="submit">Create Task</button>
-                    <button className="main-btn grey" variant="secondary" >Cancel</button>
+                    <button className="main-btn yellow" type="submit" onClick={handleSave}> {task ? 'Update Task' : 'Create Task'}</button>
+                    <button className="main-btn grey" variant="secondary" onClick={handleClose}>Cancel</button>
                 </Modal.Footer>
             </Modal>
         </>

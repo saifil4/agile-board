@@ -2,16 +2,39 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
-const TaskTypeInput = ({ labelId, setLabelId }) => {
+const taskTypes = [
+    {
+        'id': 1,
+        'key': "B",
+        'name': 'Bug',
+        'bgcolor': '#E53935',
+        'color': '#ffffff'
+    },
+    {
+        'id': 2,
+        'key': "S",
+        'name': 'Story',
+        'bgcolor': '#7CB342',
+        'color': '#ffffff'
+    },
+    {
+        'id': 3,
+        'key': "T",
+        'name': 'Task',
+        'bgcolor': '#1E88E5',
+        'color': '#ffffff'
+    }
+];
 
-    const labelList = useSelector(state => state.labelList);
+const TaskTypeInput = ({ labelId, onChange }) => {
+
     return (
         <Form.Group>
             <Form.Label className="form-label">Type</Form.Label>
-            <Form.Control value={labelId} as="select" onChange={(e) => setLabelId(parseFloat(e.target.value))}>
+            <Form.Control value={labelId} as="select" onChange={onChange}>
                 <option value=''> Select </option>
                 {
-                    labelList.map(label => (
+                    taskTypes.map(label => (
                         <option value={label.id} key={label.id}>
                             {label.name}
                         </option>
