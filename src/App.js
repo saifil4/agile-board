@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { DataProvider } from './DataContext';
 
 //importing components
 import Main from './components/Main';
@@ -7,9 +8,11 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <main className="wrapper">
-      <Main />
-    </main>
+    <DataProvider>
+      <main className="wrapper">
+        <Main />
+      </main>
+    </DataProvider>
   );
 }
 

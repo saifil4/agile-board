@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import ModalLoader from '../ModalLoader';
-import LabelForm from '../label-form/LabelForm'
+import LabelForm from '../label-form/LabelForm';
+import { useData } from '../../DataContext';F
 
-const LabelDropdown = ({setSelectedLabel}) => {
-    const selectedLabel = useSelector(state => state.SelectedLabel);
-    const labelList = useSelector(state => state.labelList);
+const LabelDropdown = () => {
+
+    const { labelList, selectedLabel, setSelectedLabel } = useData();
+
+   console.log(labelList);
+
     const [showModal, setShowModal] = useState(false);
 
     const OpenForm = () => {
@@ -30,7 +34,7 @@ const LabelDropdown = ({setSelectedLabel}) => {
             <DropdownButton menuAlign="right" onSelect={(e) => handleLabelChange(e)} bsPrefix="main-btn float-right" title={selectedLabelName()}>
                 <Dropdown.Item eventKey={-1} onClick={() => OpenForm()}>
                     <i className="fas fa-plus mr-1"></i> New label
-                     </Dropdown.Item>
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item eventKey={0}>  All </Dropdown.Item>
                 {

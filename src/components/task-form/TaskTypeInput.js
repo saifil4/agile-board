@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 
 const taskTypes = [
     {

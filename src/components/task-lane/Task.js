@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteTask } from '../../actions/actions'
 import TaskModal from '../TaskModal';
+import { useData } from '../../DataContext';
 
 const Task = ({ index, task, updateTask }) => {
 
     const Dispatch = useDispatch();
-    const Labels = useSelector(state => state.labelList);
+    const {labelList} = useData();
     const [showModal, setShowModal] = useState(false);
 
     const openModal = (e) => {
@@ -45,7 +46,7 @@ const Task = ({ index, task, updateTask }) => {
     }
 
     const getLabel = () => {
-        return Labels.find(label => label.id === task.labelid);
+        return labelList.find(label => label.id === task.labelid);
     }
 
     const Label = getLabel();
