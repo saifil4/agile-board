@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
-import { deleteTask } from '../../actions/actions'
 import TaskModal from '../TaskModal';
 import { useData } from '../../DataContext';
 
 const Task = ({ index, task, updateTask }) => {
 
-    const Dispatch = useDispatch();
     const {labelList} = useData();
     const [showModal, setShowModal] = useState(false);
 
@@ -53,7 +50,7 @@ const Task = ({ index, task, updateTask }) => {
 
     const handleDelete = (e) => {
         e.preventDefault();
-        Dispatch(deleteTask(task.id));
+        // Dispatch(deleteTask(task.id));
     }
 
 

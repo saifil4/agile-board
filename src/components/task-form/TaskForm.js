@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, Form, Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { addTask, updateTask } from '../../actions/actions';
 import NameInput from './NameInput';
 import TaskTypeInput from './TaskTypeInput';
 import DescriptionInput from './DescriptionInput';
@@ -28,17 +26,16 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
         }
     )
 
-    const Dispatch = useDispatch();
 
     const CreateTask = (e) => {
         e.preventDefault();
-        Dispatch(addTask(newtask()));
+        // Dispatch(addTask(newtask()));
         closeForm();
     }
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
-        Dispatch(updateTask(updatedtask()));
+        // Dispatch(updateTask(updatedtask()));
         closeForm();
     }
 

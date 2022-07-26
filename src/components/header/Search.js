@@ -1,5 +1,4 @@
 import React from 'react';
-import { search } from '../../actions/actions'
 
 const Search = ({ setSearchValue }) => {
     return (

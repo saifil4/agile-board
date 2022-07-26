@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateLaneName } from '../../actions/actions'
 
 const LaneTitle = ({ lane }) => {
     const [showTextField, setShowTextField] = useState(false);
-    const Dispatch = useDispatch();
     const [laneName, setLaneName] = useState(lane.lanename);
 
     const updateLaneAndClose = () => {
         if (laneName) {
-            Dispatch(updateLaneName(getUpdatedLane()));
+            // Dispatch(updateLaneName(getUpdatedLane()));
             setShowTextField(false);
         }
     }

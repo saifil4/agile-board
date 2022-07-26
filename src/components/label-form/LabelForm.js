@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { addLabel } from '../../actions/actions'
 
 const LabelForm = ({ closeForm }) => {
 
@@ -9,11 +7,10 @@ const LabelForm = ({ closeForm }) => {
     const [key, setKey] = useState('');
     const [background, setBackground] = useState('#000000');
     const [color, setColor] = useState('#ffffff');
-    const Dispatch = useDispatch();
 
     const CreateLabel = (e) => {
         e.preventDefault();
-        Dispatch(addLabel(newLabel()))
+        // Dispatch(addLabel(newLabel()))
         closeForm();
     }
 
