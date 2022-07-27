@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import TaskModal from '../TaskModal';
 import { useData } from '../../DataContext';
+import { priorityList } from '../../data';
 
 const Task = ({ index, task, updateTask }) => {
 
@@ -16,24 +17,6 @@ const Task = ({ index, task, updateTask }) => {
     const closeModal = () => {
         setShowModal(false);
     }
-
-    const priorityList = [
-        {
-            name: 'High',
-            value: 3,
-            color: '#e01c13'
-        },
-        {
-            name: 'Medium',
-            value: 2,
-            color: '#f6b32d'
-        },
-        {
-            name: 'Low',
-            value: 1,
-            color: '#abcd38'
-        }
-    ];
 
     const priorityColor = () => {
         return priorityList.find(pl => pl.value === task.priority).color;
