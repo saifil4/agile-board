@@ -1,7 +1,5 @@
 .wrapper {
-  display: inline-flex;
   width: 100%;
-  /* height: calc(100vh - 56px); */
   height: 100vh;
   overflow: hidden;
   background: #f3f4f7;
@@ -89,15 +87,14 @@
 .filtercontainer {
   height: 52px;
   width: 100%;
-  position: absolute;
   background-color: white;
 }
 
 .lanecontainer {
   width: 100%;
-  height: calc(100% - 56px);
-  margin-top: 56px;
+  height: calc(100% - 52px);
   padding: 10px 10px 0px 10px;
+  overflow: auto;
 }
 
 .addlane-icon {
