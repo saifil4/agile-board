@@ -1,31 +1,10 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-
-const taskTypes = [
-    {
-        'id': 1,
-        'key': "B",
-        'name': 'Bug',
-        'bgcolor': '#E53935',
-        'color': '#ffffff'
-    },
-    {
-        'id': 2,
-        'key': "S",
-        'name': 'Story',
-        'bgcolor': '#7CB342',
-        'color': '#ffffff'
-    },
-    {
-        'id': 3,
-        'key': "T",
-        'name': 'Task',
-        'bgcolor': '#1E88E5',
-        'color': '#ffffff'
-    }
-];
+import { useData } from '../../DataContext';
 
 const TaskTypeInput = ({ labelId, onChange }) => {
+
+    const { labelList} = useData();
 
     return (
         <Form.Group>
@@ -33,7 +12,7 @@ const TaskTypeInput = ({ labelId, onChange }) => {
             <Form.Control value={labelId} as="select" onChange={onChange}>
                 <option value=''> Select </option>
                 {
-                    taskTypes.map(label => (
+                    labelList.map(label => (
                         <option value={label.id} key={label.id}>
                             {label.name}
                         </option>

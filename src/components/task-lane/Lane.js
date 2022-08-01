@@ -45,7 +45,7 @@ const Lane = ({ lane, setLanes }) => {
     return (
         <>
             <div className="lane">
-                <LaneTitle lane={lane} />
+                <LaneTitle lane={lane} setLanes={setLanes} />
                 <div onClick={(e) => openModal(e)} className="add-button"><i className="fas fa-plus"></i></div>
                 <Droppable droppableId={lane.id.toString()} key={lane.id}>
                     {(provided) => (
