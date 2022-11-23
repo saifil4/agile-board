@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import LaneTitle from './LaneTitle';
-import ModalLoader from '../ModalLoader';
-import TaskForm from '../task-form/TaskForm';
 import Task from './Task';
 import TaskModal from '../TaskModal';
 

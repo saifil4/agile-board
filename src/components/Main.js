@@ -9,29 +9,24 @@ import { useData } from '../DataContext';
 const Main = () => {
 
     const [searchValue, setSearchValue] = useState('');
-
     const { selectedLabel, setSelectedLabel } = useData();
-
     const [lanes, setLanes] = useState(laneData);
-
     const [filteredLanes, setFilteredLanes] = useState(lanes);
 
-
-    const filterHandler = () => {
-        var filtered = lanes;
-        if (selectedLabel === 0) {
-            filtered = lanes.map(lane => {
-                return { ...lane, tasks: lane.tasks.filter(task => task.taskname.includes(searchValue)) }
-            });
-        } else {
-            filtered = lanes.map(lane => {
-                return { ...lane, tasks: lane.tasks.filter(t => t.labelid === selectedLabel && t.taskname.includes(searchValue)) }
-            })
-        }
-        setFilteredLanes(filtered)
-    }
-
     useEffect(() => {
+        const filterHandler = () => {
+            var filtered = lanes;
+            if (selectedLabel === 0) {
+                filtered = lanes.map(lane => {
+                    return { ...lane, tasks: lane.tasks.filter(task => task.taskname.includes(searchValue)) }
+                });
+            } else {
+                filtered = lanes.map(lane => {
+                    return { ...lane, tasks: lane.tasks.filter(t => t.labelid === selectedLabel && t.taskname.includes(searchValue)) }
+                })
+            }
+            setFilteredLanes(filtered)
+        }
         filterHandler();
     }, [selectedLabel, lanes, searchValue]);
 
