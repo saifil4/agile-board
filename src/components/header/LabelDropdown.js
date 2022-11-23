@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import ModalLoader from "../ModalLoader";
-import LabelForm from "../label-form/LabelForm";
+import LabelModal from "../label-form/LabelModal";
 import { useData } from "../../DataContext";
 
 const LabelDropdown = () => {
@@ -9,6 +8,7 @@ const LabelDropdown = () => {
   const [showModal, setShowModal] = useState(false);
 
   const openForm = () => setShowModal(true);
+  const closeForm = () => setShowModal(false);
 
   const selectedLabelName = () => {
     return selectedLabel !== 0
@@ -48,11 +48,7 @@ const LabelDropdown = () => {
           </Dropdown.Item>
         ))}
       </DropdownButton>
-      <ModalLoader
-        showModal={showModal}
-        setShowModal={setShowModal}
-        Component={LabelForm}
-      />
+      <LabelModal showModal={showModal} closeModal={closeForm} />
     </>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Form, Container, Row, Col } from "react-bootstrap";
-import TaskTypeInput from "./task-form/TaskTypeInput";
-import NameInput from "./task-form/NameInput";
-import DescriptionInput from "./task-form/DescriptionInput";
-import DueDateInput from "./task-form/DueDateInput";
-import PriorityInput from "./task-form/PriorityInput";
+import TaskTypeInput from "./TaskTypeInput";
+import NameInput from "./NameInput";
+import DescriptionInput from "./DescriptionInput";
+import DueDateInput from "./DueDateInput";
+import PriorityInput from "./PriorityInput";
 
 const defaultTask = {
   id: Math.random(),

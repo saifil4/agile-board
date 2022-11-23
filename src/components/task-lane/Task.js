@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import TaskModal from "../TaskModal";
+import TaskModal from "../task-form/TaskModal";
 import { useData } from "../../DataContext";
 import { priorityList } from "../../data";
 

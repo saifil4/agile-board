@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useData } from "../../DataContext";
 
-const LabelForm = ({ closeForm }) => {
+const LabelModal = ({ showModal, closeModal }) => {
   const [labelname, setLabelName] = useState("");
   const [key, setKey] = useState("");
   const [background, setBackground] = useState("#000000");
@@ -20,18 +20,23 @@ const LabelForm = ({ closeForm }) => {
     };
   }
 
-  const CreateLabel = (e) => {
+  const createLabel = (e) => {
     e.preventDefault();
     const newLabel = getLabel();
     setLabelList((prev) => {
       return [...prev, newLabel];
     });
-    closeForm();
+    closeModal();
   };
 
- 
   return (
-    <>
+    <Modal
+      show={showModal}
+      onHide={closeModal}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title as="h6" id="contained-modal-title-vcenter">
           New Label
@@ -87,15 +92,15 @@ const LabelForm = ({ closeForm }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => closeForm()}>
+        <Button variant="secondary" onClick={closeModal}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={(e) => CreateLabel(e)} type="submit">
+        <Button variant="primary" onClick={createLabel} type="submit">
           Create Label
         </Button>
       </Modal.Footer>
-    </>
+    </Modal>
   );
 };
 
-export default LabelForm;
+export default LabelModal;
