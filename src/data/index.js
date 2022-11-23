@@ -90,3 +90,27 @@ export const priorityList = [
         color: '#abcd38'
     }
 ]
+
+export const LabelData = [
+    {
+      id: 1,
+      key: "B",
+      name: "Bug",
+      bgcolor: "#E53935",
+      color: "#ffffff",
+    },
+    {
+      id: 2,
+      key: "S",
+      name: "Story",
+      bgcolor: "#7CB342",
+      color: "#ffffff",
+    },
+    {
+      id: 3,
+      key: "T",
+      name: "Task",
+      bgcolor: "#1E88E5",
+      color: "#ffffff",
+    },
+  ]
