@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
-//importing components
 import Header from './header/Header';
 import LaneList from './task-lane/LaneList';
 import { laneData } from '../data';
@@ -22,7 +20,7 @@ const Main = () => {
                 });
             } else {
                 filtered = lanes.map(lane => {
-                    return { ...lane, tasks: lane.tasks.filter(t => t.labelid === selectedLabel && t.taskname.includes(searchValue)) }
+                    return { ...lane, tasks: lane.tasks.filter(task => task.labelid === selectedLabel && task.taskname.includes(searchValue)) }
                 })
             }
             setFilteredLanes(filtered)

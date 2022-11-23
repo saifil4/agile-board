@@ -20,7 +20,6 @@ const LabelForm = ({ closeForm }) => {
     };
   }
 
-
   const CreateLabel = (e) => {
     e.preventDefault();
     const newLabel = getLabel();

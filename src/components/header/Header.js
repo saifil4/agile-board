@@ -2,8 +2,8 @@ import React from 'react';
 import { Navbar, Form, } from 'react-bootstrap';
 import LabelDropdown from './LabelDropdown';
 import Search from './Search'
-const Header = ({ setSearchValue, setSelectedLabel }) => {
 
+const Header = ({ setSearchValue, setSelectedLabel }) => {
     return (
         <div className="filtercontainer">
             <Navbar expand="lg">
