@@ -14,55 +14,15 @@ const TaskForm = ({ closeForm, entity, entityType }) => {
     const [description, setDescription] = useState(entity.description);
     const [labelId, setLabelId] = useState(entity.labelid);
 
-    const [task, setTask] = useState(
-        {
-            id: Math.random() * 1000,
-            labelid: 1,
-            taskname: 'Misspelling on Navbar',
-            description: 'this is a demo description',
-            duedate: '2021-02-12',
-            priority: 3,
-            laneid: 1
-        }
-    )
-
 
     const CreateTask = (e) => {
         e.preventDefault();
-        // Dispatch(addTask(newtask()));
         closeForm();
     }
 
     const UpdateTask1 = (e) => {
         e.preventDefault();
-        // Dispatch(updateTask(updatedtask()));
         closeForm();
-    }
-
-
-    function newtask() {
-        return {
-            'id': Math.random() * 1000,
-            'taskname': taskname,
-            'description': description,
-            'duedate': duedate,
-            'priority': priority,
-            'labelid': labelId,
-            'laneid': entity.id
-        }
-    }
-
-    function updatedtask() {
-        var task = {
-            'id': entity.id,
-            'taskname': taskname,
-            'description': description,
-            'duedate': duedate,
-            'priority': priority,
-            'labelid': labelId,
-            'laneid': entity.laneid
-        }
-        return task;
     }
 
     return (

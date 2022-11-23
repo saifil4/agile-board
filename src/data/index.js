@@ -10,7 +10,6 @@ export const laneData = [
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
                 priority: 3,
-                laneid: 1
             }
         ]
     },
@@ -25,7 +24,6 @@ export const laneData = [
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
                 priority: 1,
-                laneid: 2
             },
             {
                 id: Math.random() * 1000,
@@ -34,8 +32,6 @@ export const laneData = [
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
                 priority: 2,
-                laneid: 2,
-                order: 1
             },
             {
                 id: Math.random() * 1000,
@@ -44,7 +40,6 @@ export const laneData = [
                 description: 'Distribute header into multiple components',
                 duedate: '2021-02-12',
                 priority: 1,
-                laneid: 2
             }
         ]
     },
@@ -59,7 +54,6 @@ export const laneData = [
                 description: 'Distribute header into multiple components',
                 duedate: '2021-02-12',
                 priority: 2,
-                laneid: 3
             }
         ]
     },
@@ -74,7 +68,6 @@ export const laneData = [
                 description: 'this is a demo description',
                 duedate: '2021-02-12',
                 priority: 2,
-                laneid: 4
             },
         ]
     }
