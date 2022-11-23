@@ -40,6 +40,20 @@ const Lane = ({ lane, setLanes }) => {
     });
   };
 
+  const deleteTask = (updatedTask) => {
+    setLanes((prev) => {
+      return prev.map((ln) => {
+        if (ln.id === lane.id) {
+          return {
+            ...ln,
+            tasks: ln.tasks.filter((task) => task.id !== updatedTask.id),
+          };
+        }
+        return ln;
+      });
+    });
+  };
+
   return (
     <>
       <div className="lane">
@@ -56,6 +70,7 @@ const Lane = ({ lane, setLanes }) => {
             >
               {lane.tasks.map((task, index) => (
                 <Task
+                  deleteTask={deleteTask}
                   index={index}
                   updateTask={updateTask}
                   key={task.id}

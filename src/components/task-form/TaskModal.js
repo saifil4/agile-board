@@ -16,8 +16,14 @@ const defaultTask = {
   priority: 1,
 };
 
-const TaskModal = ({ showModal, closeModal, task = null, save }) => {
-  const [selectedTask, setSelectedTask] = useState(task ? task : defaultTask);
+const TaskModal = ({
+  showModal,
+  closeModal,
+  task = defaultTask,
+  save,
+  deleteTask,
+}) => {
+  const [selectedTask, setSelectedTask] = useState(task);
 
   const handleSave = () => {
     save(selectedTask);
@@ -29,6 +35,10 @@ const TaskModal = ({ showModal, closeModal, task = null, save }) => {
     closeModal();
   };
 
+  const handleDelete = () => {
+    deleteTask(selectedTask);
+  };
+
   const handeChange = (e) => {
     let value = e.target.value;
     const name = e.target.name;
@@ -37,13 +47,7 @@ const TaskModal = ({ showModal, closeModal, task = null, save }) => {
   };
 
   return (
-    <Modal
-      show={showModal}
-      onHide={() => closeModal()}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal show={showModal} onHide={() => closeModal()} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title as="h6">New Task</Modal.Title>
       </Modal.Header>
@@ -85,15 +89,16 @@ const TaskModal = ({ showModal, closeModal, task = null, save }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        {task.id !== defaultTask.id && (
+          <button className="main-btn red" onClick={handleDelete}>
+            Delete
+          </button>
+        )}
         <button className="main-btn yellow" type="submit" onClick={handleSave}>
           {" "}
           {task ? "Update Task" : "Create Task"}
         </button>
-        <button
-          className="main-btn grey"
-          variant="secondary"
-          onClick={handleClose}
-        >
+        <button className="main-btn grey" onClick={handleClose}>
           Cancel
         </button>
       </Modal.Footer>

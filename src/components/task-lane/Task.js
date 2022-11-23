@@ -4,7 +4,7 @@ import TaskModal from "../task-form/TaskModal";
 import { useData } from "../../DataContext";
 import { priorityList } from "../../data";
 
-const Task = ({ index, task, updateTask }) => {
+const Task = ({ index, task, updateTask, deleteTask }) => {
   const { labelList } = useData();
   const [showModal, setShowModal] = useState(false);
 
@@ -29,11 +29,6 @@ const Task = ({ index, task, updateTask }) => {
   };
 
   const Label = getLabel();
-
-  const handleDelete = (e) => {
-    e.preventDefault();
-    // Dispatch(deleteTask(task.id));
-  };
 
   return (
     <>
@@ -60,19 +55,14 @@ const Task = ({ index, task, updateTask }) => {
             >
               {Label.name}
             </div>
-            <div className="duedate">
-              {task.duedate}
-              <i
-                onClick={(e) => handleDelete(e)}
-                className="fas fa-trash float-right delete-icon"
-              ></i>
-            </div>
+            <div className="duedate">{task.duedate}</div>
           </div>
         )}
       </Draggable>
       <TaskModal
         task={task}
         save={updateTask}
+        deleteTask={deleteTask}
         showModal={showModal}
         closeModal={closeModal}
       />
