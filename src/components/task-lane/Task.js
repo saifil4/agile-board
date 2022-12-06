@@ -42,7 +42,6 @@ const Task = ({ index, task, updateTask, deleteTask }) => {
             onClick={(e) => openModal(e)}
           >
             <div className="title">
-              <span>{task.id}</span>
               <i
                 title={`Priority: ${priorityName()}`}
                 style={{ color: priorityColor() }}
