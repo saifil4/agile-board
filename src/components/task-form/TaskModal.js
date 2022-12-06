@@ -49,7 +49,7 @@ const TaskModal = ({
   const handeChange = (e) => {
     let value = e.target.value;
     const name = e.target.name;
-    if (name === "labelid" || name === "priority") value = parseInt(value);
+    if (name === "priority") value = parseInt(value);
     setSelectedTask({ ...selectedTask, [name]: value });
   };
 
