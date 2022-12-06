@@ -12,8 +12,8 @@ const PriorityInput = ({ priority, onChange, name }) => {
         onChange={onChange}
         as="select"
       >
-        {priorityList.map((pl) => (
-          <option value={pl.value}>{pl.name}</option>
+        {priorityList.map((pl,index) => (
+          <option key={index} value={pl.value}>{pl.name}</option>
         ))}
       </Form.Control>
     </Form.Group>

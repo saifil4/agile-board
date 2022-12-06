@@ -42,6 +42,7 @@ const Task = ({ index, task, updateTask, deleteTask }) => {
             onClick={(e) => openModal(e)}
           >
             <div className="title">
+              <span>{task.id}</span>
               <i
                 title={`Priority: ${priorityName()}`}
                 style={{ color: priorityColor() }}
@@ -59,15 +60,17 @@ const Task = ({ index, task, updateTask, deleteTask }) => {
           </div>
         )}
       </Draggable>
-      <TaskModal
-        task={task}
-        save={updateTask}
-        deleteTask={deleteTask}
-        showModal={showModal}
-        closeModal={closeModal}
-      />
+      {showModal && (
+        <TaskModal
+          task={task}
+          save={updateTask}
+          deleteTask={deleteTask}
+          showModal={showModal}
+          closeModal={closeModal}
+        />
+      )}
     </>
   );
 };
 
-export default Task;
+export default React.memo(Task);

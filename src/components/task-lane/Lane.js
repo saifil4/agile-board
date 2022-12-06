@@ -17,6 +17,7 @@ const Lane = ({ lane, setLanes }) => {
   };
 
   const addTask = (newTask) => {
+    console.log('new task')
     setLanes((prev) => {
       return prev.map((ln) =>
         ln.id === lane.id ? { ...ln, tasks: [...ln.tasks, newTask] } : ln
@@ -25,6 +26,7 @@ const Lane = ({ lane, setLanes }) => {
   };
 
   const updateTask = (updatedTask) => {
+    console.log('updated')
     setLanes((prev) => {
       return prev.map((ln) => {
         if (ln.id === lane.id) {
@@ -82,7 +84,9 @@ const Lane = ({ lane, setLanes }) => {
           )}
         </Droppable>
       </div>
-      <TaskModal save={addTask} showModal={showModal} closeModal={closeModal} />
+      {
+        showModal && <TaskModal save={addTask} showModal={showModal} closeModal={closeModal} />
+      }
     </>
   );
 };

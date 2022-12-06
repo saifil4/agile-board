@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import TaskTypeInput from "./TaskTypeInput";
 import NameInput from "./NameInput";
@@ -7,23 +8,29 @@ import DescriptionInput from "./DescriptionInput";
 import DueDateInput from "./DueDateInput";
 import PriorityInput from "./PriorityInput";
 
-const defaultTask = {
-  id: Math.random(),
-  labelid: 1,
-  taskname: "",
-  description: "",
-  duedate: "",
-  priority: 1,
+const getDefaultTask = () => {
+  return {
+    id: uuidv4(),
+    labelid: 1,
+    taskname: "",
+    description: "",
+    duedate: "",
+    priority: 1,
+  };
 };
 
 const TaskModal = ({
   showModal,
   closeModal,
-  task = defaultTask,
+  task = null,
   save,
   deleteTask,
 }) => {
-  const [selectedTask, setSelectedTask] = useState(task);
+  console.log(task);
+
+  const defaultTask = getDefaultTask();
+
+  const [selectedTask, setSelectedTask] = useState(task ? task : defaultTask);
 
   const handleSave = () => {
     save(selectedTask);
@@ -89,7 +96,7 @@ const TaskModal = ({
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        {task.id !== defaultTask.id && (
+        {task && (
           <button className="main-btn red" onClick={handleDelete}>
             Delete
           </button>

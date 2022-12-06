@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { v4 as uuidv4 } from 'uuid';
 import { useData } from "../../DataContext";
 
 const LabelModal = ({ showModal, closeModal }) => {
@@ -12,7 +13,7 @@ const LabelModal = ({ showModal, closeModal }) => {
 
   function getLabel() {
     return {
-      id: Math.random() * 1000,
+      id: uuidv4(),
       key: key,
       name: labelname,
       bgcolor: background,

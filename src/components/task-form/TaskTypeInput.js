@@ -2,14 +2,14 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { useData } from '../../DataContext';
 
-const TaskTypeInput = ({ labelId, onChange, name }) => {
+const TaskTypeInput = ({ value, onChange, name }) => {
 
     const { labelList} = useData();
 
     return (
         <Form.Group>
             <Form.Label className="form-label">Type</Form.Label>
-            <Form.Control name={name} value={labelId} as="select" onChange={onChange}>
+            <Form.Control name={name} value={value} as="select" onChange={onChange}>
                 <option value=''> Select </option>
                 {
                     labelList.map(label => (
