@@ -14,7 +14,7 @@ const Main = () => {
     useEffect(() => {
         const filterHandler = () => {
             var filtered = lanes;
-            if (selectedLabel === 0) {
+            if (selectedLabel === "0") {
                 filtered = lanes.map(lane => {
                     return { ...lane, tasks: lane.tasks.filter(task => task.name.includes(searchValue)) }
                 });

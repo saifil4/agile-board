@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import { Dispatch, useState, MouseEvent } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import LaneTitle from "./LaneTitle";
 import Task from "./Task";
 import TaskModal from "../task-form/TaskModal";
+import { ILane, ITask } from "data";
 
-const Lane = ({ lane, setLanes }) => {
+interface ILaneProps {
+  lane: ILane,
+  setLanes: Dispatch<React.SetStateAction<ILane[]>>
+}
+
+const Lane = ({ lane, setLanes }: ILaneProps) => {
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = (e) => {
+  const openModal = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     setShowModal(true);
   };
@@ -16,8 +22,7 @@ const Lane = ({ lane, setLanes }) => {
     setShowModal(false);
   };
 
-  const addTask = (newTask) => {
-    console.log('new task')
+  const addTask = (newTask: ITask) => {
     setLanes((prev) => {
       return prev.map((ln) =>
         ln.id === lane.id ? { ...ln, tasks: [...ln.tasks, newTask] } : ln
@@ -25,8 +30,7 @@ const Lane = ({ lane, setLanes }) => {
     });
   };
 
-  const updateTask = (updatedTask) => {
-    console.log('updated')
+  const updateTask = (updatedTask: ITask) => {
     setLanes((prev) => {
       return prev.map((ln) => {
         if (ln.id === lane.id) {
@@ -42,13 +46,13 @@ const Lane = ({ lane, setLanes }) => {
     });
   };
 
-  const deleteTask = (updatedTask) => {
+  const deleteTask = (deletedTask: ITask) => {
     setLanes((prev) => {
       return prev.map((ln) => {
         if (ln.id === lane.id) {
           return {
             ...ln,
-            tasks: ln.tasks.filter((task) => task.id !== updatedTask.id),
+            tasks: ln.tasks.filter((task) => task.id !== deletedTask.id),
           };
         }
         return ln;
@@ -85,7 +89,7 @@ const Lane = ({ lane, setLanes }) => {
         </Droppable>
       </div>
       {
-        showModal && <TaskModal save={addTask} showModal={showModal} closeModal={closeModal} />
+        showModal && <TaskModal showModal={showModal} closeModal={closeModal} save={addTask} />
       }
     </>
   );

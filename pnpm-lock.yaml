@@ -26,6 +26,9 @@ dependencies:
   '@types/react-beautiful-dnd':
     specifier: ^13.1.4
     version: 13.1.4
+  '@types/react-bootstrap':
+    specifier: ^0.32.32
+    version: 0.32.32
   '@types/react-dom':
     specifier: ^18.2.7
     version: 18.2.7
@@ -2663,6 +2666,12 @@ packages:
 
   /@types/react-beautiful-dnd@13.1.4:
     resolution: {integrity: sha512-4bIBdzOr0aavN+88q3C7Pgz+xkb7tz3whORYrmSj77wfVEMfiWiooIwVWFR7KM2e+uGTe5BVrXqSfb0aHeflJA==}
+    dependencies:
+      '@types/react': 18.2.22
+    dev: false
+
+  /@types/react-bootstrap@0.32.32:
+    resolution: {integrity: sha512-GM9UtV7v+C2F0rbqgIpMWdCKBMdX3PQURoJQobPO4vDAeFadcExNtKffi13/MjaAks+riJKVGyiMe+6OmDYT2w==}
     dependencies:
       '@types/react': 18.2.22
     dev: false

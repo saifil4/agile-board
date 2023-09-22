@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import { useData } from "hooks/useData";
+import { ILabel } from "data";
 
-const LabelModal = ({ showModal, closeModal }) => {
+interface ILabelModalProps {
+  showModal: boolean,
+  closeModal: () => void
+}
+
+const LabelModal = ({ showModal, closeModal }: ILabelModalProps) => {
   const [labelname, setLabelName] = useState("");
   const [key, setKey] = useState("");
   const [background, setBackground] = useState("#000000");
@@ -12,17 +18,18 @@ const LabelModal = ({ showModal, closeModal }) => {
   const { setLabelList } = useData();
 
   function getLabel() {
-    return {
+    const label: ILabel = {
       id: uuidv4(),
       key: key,
       name: labelname,
-      bgcolor: background,
+      bg_color: background,
       color: color,
     };
+    return label;
   }
 
-  const createLabel = (e) => {
-    e.preventDefault();
+  const createLabel = (e: any) => {
+    e. preventDefault();
     const newLabel = getLabel();
     setLabelList((prev) => {
       return [...prev, newLabel];
@@ -50,7 +57,7 @@ const LabelModal = ({ showModal, closeModal }) => {
             <Form.Control
               type="text"
               onChange={(e) => setKey(e.target.value)}
-              maxlength="2"
+              maxLength={2}
               style={{ width: "70px", textTransform: "uppercase" }}
               placeholder="Id"
             />
@@ -74,7 +81,7 @@ const LabelModal = ({ showModal, closeModal }) => {
                 type="color"
                 onChange={(e) => setColor(e.target.value)}
                 value={color}
-                maxlength="2"
+                maxLength={2}
                 placeholder="Id"
               />
             </Form.Group>
@@ -85,7 +92,7 @@ const LabelModal = ({ showModal, closeModal }) => {
                 type="color"
                 onChange={(e) => setBackground(e.target.value)}
                 value={background}
-                maxlength="2"
+                maxLength={2}
                 placeholder="Id"
               />
             </Form.Group>

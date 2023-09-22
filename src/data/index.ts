@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ILane {
-    id: number,
+    id: string,
     name: string,
     tasks: Array<ITask>
 }
 
 export interface ITask {
     id: string,
-    label_id: number,
+    label_id: string,
     name: string,
     description: string,
     due_date: string,
@@ -22,7 +22,7 @@ export interface IPriority {
 }
 
 export interface ILabel {
-    id: number,
+    id: string,
     key: string,
     name: string,
     bg_color: string,
@@ -31,12 +31,12 @@ export interface ILabel {
 
 export const laneData: ILane[] = [
     {
-        id: 1,
+        id: "1",
         name: 'Backlog',
         tasks: [
             {
                 id: uuidv4(),
-                label_id: 1,
+                label_id: "1",
                 name: 'Misspelling on navbar',
                 description: 'This is a demo description',
                 due_date: '2021-02-12',
@@ -45,12 +45,12 @@ export const laneData: ILane[] = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         name: 'Open',
         tasks: [
             {
                 id: uuidv4(),
-                label_id: 2,
+                label_id: "2",
                 name: 'Add hidden button in Mobile view',
                 description: 'This is a demo description',
                 due_date: '2021-02-12',
@@ -58,7 +58,7 @@ export const laneData: ILane[] = [
             },
             {
                 id: uuidv4(),
-                label_id: 3,
+                label_id: "3",
                 name: 'Design Prototype for Blog Page',
                 description: 'This is a demo description',
                 due_date: '2021-02-12',
@@ -66,7 +66,7 @@ export const laneData: ILane[] = [
             },
             {
                 id: uuidv4(),
-                label_id: 3,
+                label_id: "4",
                 name: 'Update Header',
                 description: 'Distribute header into multiple components',
                 due_date: '2022-04-05',
@@ -75,12 +75,12 @@ export const laneData: ILane[] = [
         ]
     },
     {
-        id: 3,
+        id: "3",
         name: 'In Progress',
         tasks: [
             {
                 id: uuidv4(),
-                label_id: 3,
+                label_id: "3",
                 name: 'Component Redesign',
                 description: 'Distribute header into multiple components',
                 due_date: '2021-02-12',
@@ -89,12 +89,12 @@ export const laneData: ILane[] = [
         ]
     },
     {
-        id: 4,
+        id: "4",
         name: 'Done',
         tasks: [
             {
                 id: uuidv4(),
-                label_id: 2,
+                label_id: "2",
                 name: 'Change Task Form Format',
                 description: 'this is a demo description',
                 due_date: '2021-02-12',
@@ -124,21 +124,21 @@ export const priorityList: IPriority[] = [
 
 export const labelData: ILabel[] = [
     {
-        id: 1,
+        id: "1",
         key: "B",
         name: "Bug",
         bg_color: "#E53935",
         color: "#ffffff",
     },
     {
-        id: 2,
+        id: "2",
         key: "S",
         name: "Story",
         bg_color: "#7CB342",
         color: "#ffffff",
     },
     {
-        id: 3,
+        id: "3",
         key: "T",
         name: "Task",
         bg_color: "#1E88E5",

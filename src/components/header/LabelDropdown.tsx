@@ -11,15 +11,14 @@ const LabelDropdown = () => {
   const closeForm = () => setShowModal(false);
 
   const selectedLabelName = () => {
-    return selectedLabel !== 0
+    return selectedLabel !== "0"
       ? labelList.find((label) => label.id === selectedLabel)?.name
       : "All";
   };
 
   const handleLabelChange = (e: string) => {
-    const labelid = parseInt(e);
-    if (labelid !== -1) {
-      setSelectedLabel(labelid);
+    if (e !== "-1") {
+      setSelectedLabel(e);
     }
   };
 

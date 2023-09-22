@@ -9,7 +9,7 @@ import { useData } from "hooks/useData";
 const getDefaultTask = () => {
   const task: ITask = {
     id: uuidv4(),
-    label_id: 1,
+    label_id: "1",
     name: "",
     description: "",
     due_date: "",
@@ -21,13 +21,13 @@ const getDefaultTask = () => {
 interface ITaskModal {
   showModal: boolean,
   closeModal: () => void,
-  task: ITask | null,
+  task?: ITask | null,
   save: (task: ITask) => void,
-  deleteTask: (task: ITask) => void
+  deleteTask?: (task: ITask) => void
 }
 
-const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: ITaskModal) => {
-  
+const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITaskModal) => {
+
   const defaultTask = getDefaultTask();
   const { labelList } = useData();
 
@@ -44,7 +44,9 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: IT
   };
 
   const handleDelete = () => {
-    deleteTask(selectedTask);
+    if (deleteTask) {
+      deleteTask(selectedTask);
+    }
   };
 
   const handeChange = (e: ChangeEvent<any>) => {
@@ -67,9 +69,10 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: IT
             <Row>
               <Col md="8">
                 <Input
+                  label="Label"
                   type="select"
                   value={selectedTask.label_id}
-                  name="labelid"
+                  name="label_id"
                   onChange={handeChange}
                 >
                   {
@@ -81,11 +84,13 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: IT
                   }
                 </Input>
                 <Input
+                  label="Name"
                   value={selectedTask.name}
-                  name="taskname"
+                  name="name"
                   onChange={handeChange}
                 />
                 <Input
+                  label="Description"
                   type="textarea"
                   value={selectedTask.description}
                   name="description"
@@ -94,12 +99,14 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: IT
               </Col>
               <Col md="4">
                 <Input
-                  type="date"
+                  label="Due date"
+                  type="text"
                   value={selectedTask.due_date}
                   name="due_date"
                   onChange={handeChange}
                 />
                 <Input
+                  label="Priority"
                   type="select"
                   value={selectedTask.priority}
                   name="priority"

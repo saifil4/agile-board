@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import { ILane } from "data";
+import { Dispatch, useState, KeyboardEvent } from "react";
 
-const LaneTitle = ({ lane, setLanes }) => {
+interface ILaneTitle {
+  lane: ILane,
+  setLanes: Dispatch<React.SetStateAction<ILane[]>>
+}
+
+const LaneTitle = ({ lane, setLanes }: ILaneTitle) => {
   const [showTextField, setShowTextField] = useState(false);
-  const [laneName, setLaneName] = useState(lane.lanename);
+  const [laneName, setLaneName] = useState(lane.name);
 
   const updateLaneAndClose = () => {
     if (laneName) {
@@ -23,7 +29,7 @@ const LaneTitle = ({ lane, setLanes }) => {
     updateLaneAndClose();
   };
 
-  const handleInputClick = (e) => {
+  const handleInputClick = (e: KeyboardEvent<HTMLElement>) => {
     if (e.charCode === 13) {
       updateLaneAndClose();
     }
@@ -36,7 +42,7 @@ const LaneTitle = ({ lane, setLanes }) => {
   const laneTitleInputClass = () => {
     return "lane-title-input" + (laneName ? "" : " error");
   };
-  
+
   return (
     <>
       {showTextField ? (
@@ -44,14 +50,14 @@ const LaneTitle = ({ lane, setLanes }) => {
           value={laneName}
           autoFocus
           onChange={(e) => setLaneName(e.target.value)}
-          onKeyPress={handleInputClick}
+          onKeyDown={handleInputClick}
           onBlur={handleBlur}
           className={laneTitleInputClass()}
           type="text"
         />
       ) : (
         <h6 onClick={handleTextClick} className="lane-title">
-          {lane.lanename}
+          {lane.name}
           <i className="fas fa-pencil-alt"></i>
         </h6>
       )}
