@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
-import { useData } from "../../DataContext";
+import { useData } from "hooks/useData";
 
 const LabelModal = ({ showModal, closeModal }) => {
   const [labelname, setLabelName] = useState("");

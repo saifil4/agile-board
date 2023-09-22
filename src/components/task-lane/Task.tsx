@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useMemo, useState, MouseEvent } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import TaskModal from "../task-form/TaskModal";
-import { useData } from "../../DataContext";
-import { priorityList } from "../../data";
+import { useData } from "hooks/useData";
+import { priorityList, ITask } from "data";
+import TaskModal from "components/task-form/TaskModal";
 
-const Task = ({ index, task, updateTask, deleteTask }) => {
+interface ITaskProps {
+  task: ITask,
+  index: number,
+  updateTask: (task: ITask) => void,
+  deleteTask: (task: ITask) => void
+}
+
+
+const Task = ({ index, task, updateTask, deleteTask }: ITaskProps) => {
   const { labelList } = useData();
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = (e) => {
+  const openModal = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setShowModal(true);
   };
@@ -17,18 +25,15 @@ const Task = ({ index, task, updateTask, deleteTask }) => {
     setShowModal(false);
   };
 
-  const priorityColor = () => {
-    return priorityList.find((pl) => pl.value === task.priority).color;
-  };
-  const priorityName = () => {
-    return priorityList.find((pl) => pl.value === task.priority).name;
-  };
+  const priority = useMemo(() => {
+    return priorityList.find((pl) => pl.value === task?.priority);
+  }, [task])
 
-  const getLabel = () => {
-    return labelList.find((label) => label.id === task.labelid);
-  };
 
-  const Label = getLabel();
+  const label = useMemo(() => {
+    return labelList.find((label) => label.id === task.label_id);
+  }, [task])
+
 
   return (
     <>
@@ -43,19 +48,19 @@ const Task = ({ index, task, updateTask, deleteTask }) => {
           >
             <div className="title">
               <i
-                title={`Priority: ${priorityName()}`}
-                style={{ color: priorityColor() }}
+                title={`Priority: ${priority?.name}`}
+                style={{ color: priority?.color }}
                 className="fas fa-circle mr-1"
               ></i>
-              {task.taskname}
+              {task.name}
             </div>
             <div
-              style={{ background: Label.bgcolor, color: Label.color }}
+              style={{ background: label?.bg_color, color: label?.color }}
               className="pill"
             >
-              {Label.name}
+              {label?.name}
             </div>
-            <div className="duedate">{task.duedate}</div>
+            <div className="duedate">{task?.due_date}</div>
           </div>
         )}
       </Draggable>

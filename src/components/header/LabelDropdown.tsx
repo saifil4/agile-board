@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import LabelModal from "../label-form/LabelModal";
-import { useData } from "../../DataContext";
+import LabelModal from "components/label-form/LabelModal";
+import { useData } from "hooks/useData";
 
 const LabelDropdown = () => {
   const { labelList, selectedLabel, setSelectedLabel } = useData();
@@ -12,12 +12,12 @@ const LabelDropdown = () => {
 
   const selectedLabelName = () => {
     return selectedLabel !== 0
-      ? labelList.find((label) => label.id === selectedLabel).name
+      ? labelList.find((label) => label.id === selectedLabel)?.name
       : "All";
   };
 
-  const handleLabelChange = (e) => {
-    const labelid = parseFloat(e);
+  const handleLabelChange = (e: string) => {
+    const labelid = parseInt(e);
     if (labelid !== -1) {
       setSelectedLabel(labelid);
     }
@@ -27,7 +27,7 @@ const LabelDropdown = () => {
     <>
       <DropdownButton
         menuAlign="right"
-        onSelect={(e) => handleLabelChange(e)}
+        onSelect={(e: string) => handleLabelChange(e)}
         bsPrefix="main-btn float-right"
         title={selectedLabelName()}
       >
@@ -39,7 +39,7 @@ const LabelDropdown = () => {
         {labelList.map((label) => (
           <Dropdown.Item key={label.id} eventKey={label.id}>
             <div
-              style={{ background: label.bgcolor, color: label.color }}
+              style={{ background: label.bg_color, color: label.color }}
               className="labelkey mr-3"
             >
               {label.key}

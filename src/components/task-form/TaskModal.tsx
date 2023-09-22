@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Form, Container, Row, Col } from "react-bootstrap";
-import TaskTypeInput from "./TaskTypeInput";
-import NameInput from "./NameInput";
-import DescriptionInput from "./DescriptionInput";
-import DueDateInput from "./DueDateInput";
-import PriorityInput from "./PriorityInput";
+import { ITask, priorityList } from "data";
+import Input from "./Input";
+import { useData } from "hooks/useData";
 
 const getDefaultTask = () => {
-  return {
+  const task: ITask = {
     id: uuidv4(),
-    labelid: 1,
-    taskname: "",
+    label_id: 1,
+    name: "",
     description: "",
-    duedate: "",
+    due_date: "",
     priority: 1,
-  };
+  }
+  return task;
 };
 
-const TaskModal = ({
-  showModal,
-  closeModal,
-  task = null,
-  save,
-  deleteTask,
-}) => {
-  console.log(task);
+interface ITaskModal {
+  showModal: boolean,
+  closeModal: () => void,
+  task: ITask | null,
+  save: (task: ITask) => void,
+  deleteTask: (task: ITask) => void
+}
 
+const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask, }: ITaskModal) => {
+  
   const defaultTask = getDefaultTask();
+  const { labelList } = useData();
 
-  const [selectedTask, setSelectedTask] = useState(task ? task : defaultTask);
+  const [selectedTask, setSelectedTask] = useState<ITask>(task ? task : defaultTask);
 
   const handleSave = () => {
     save(selectedTask);
@@ -46,12 +47,14 @@ const TaskModal = ({
     deleteTask(selectedTask);
   };
 
-  const handeChange = (e) => {
+  const handeChange = (e: ChangeEvent<any>) => {
     let value = e.target.value;
     const name = e.target.name;
     if (name === "priority") value = parseInt(value);
     setSelectedTask({ ...selectedTask, [name]: value });
   };
+
+
 
   return (
     <Modal show={showModal} onHide={() => closeModal()} size="lg" centered>
@@ -63,33 +66,49 @@ const TaskModal = ({
           <Container>
             <Row>
               <Col md="8">
-                <TaskTypeInput
-                  value={selectedTask.labelid}
+                <Input
+                  type="select"
+                  value={selectedTask.label_id}
                   name="labelid"
                   onChange={handeChange}
-                />
-                <NameInput
-                  value={selectedTask.taskname}
+                >
+                  {
+                    labelList.map(label => (
+                      <option value={label.id} key={label.id}>
+                        {label.name}
+                      </option>
+                    ))
+                  }
+                </Input>
+                <Input
+                  value={selectedTask.name}
                   name="taskname"
                   onChange={handeChange}
                 />
-                <DescriptionInput
+                <Input
+                  type="textarea"
                   value={selectedTask.description}
                   name="description"
                   onChange={handeChange}
                 />
               </Col>
               <Col md="4">
-                <DueDateInput
-                  value={selectedTask.duedate}
-                  name="duedate"
+                <Input
+                  type="date"
+                  value={selectedTask.due_date}
+                  name="due_date"
                   onChange={handeChange}
                 />
-                <PriorityInput
+                <Input
+                  type="select"
                   value={selectedTask.priority}
                   name="priority"
                   onChange={handeChange}
-                />
+                >
+                  {priorityList.map((pl, index) => (
+                    <option key={index} value={pl.value}>{pl.name}</option>
+                  ))}
+                </Input>
               </Col>
             </Row>
           </Container>

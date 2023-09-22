@@ -1,6 +1,5 @@
-import React from 'react';
 import './App.css';
-import { DataProvider } from './DataContext';
+import { DataProvider } from 'hooks/useData';
 
 //importing components
 import Main from './components/Main';

@@ -1,9 +1,12 @@
-import React from 'react';
 import { Navbar, Form, } from 'react-bootstrap';
 import LabelDropdown from './LabelDropdown';
-import Search from './Search'
+import Search from './Search';
 
-const Header = ({ setSearchValue, setSelectedLabel }) => {
+interface IHeaderProps {
+    handleSearch: (searchParam: string) => void
+}
+
+const Header = ({ handleSearch }: IHeaderProps) => {
     return (
         <div className="filtercontainer">
             <Navbar expand="lg">
@@ -13,8 +16,8 @@ const Header = ({ setSearchValue, setSelectedLabel }) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Form inline>
-                        <Search setSearchValue={setSearchValue} />
-                        <LabelDropdown setSelectedLabel={setSelectedLabel} />
+                        <Search handleSearch={handleSearch} />
+                        <LabelDropdown />
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
