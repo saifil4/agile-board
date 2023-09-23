@@ -1,9 +1,9 @@
 import { Dispatch, useState, MouseEvent } from "react";
-import { Droppable } from "react-beautiful-dnd";
 import LaneTitle from "layout/lane/LaneTitle";
 import Task from "layout/task";
 import TaskForm from "layout/task-form";
 import { ILane, ITask } from "data";
+import Droppable from "components/drag-drop/Droppable";
 
 interface ILaneProps {
   lane: ILane,
@@ -56,24 +56,17 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
           <i className="fas fa-plus"></i>
         </div>
         <Droppable droppableId={lane.id.toString()} key={lane.id}>
-          {(provided) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              className="lane-body"
-            >
-              {lane.tasks.map((task, index) => (
-                <Task
-                  deleteTask={deleteTask}
-                  index={index}
-                  updateTask={updateTask}
-                  key={task.id}
-                  task={task}
-                />
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
+          <div className="lane-body">
+            {lane.tasks.map((task, index) => (
+              <Task
+                deleteTask={deleteTask}
+                index={index}
+                updateTask={updateTask}
+                key={task.id}
+                task={task}
+              />
+            ))}
+          </div>
         </Droppable>
       </div>
       {
@@ -84,3 +77,5 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
 };
 
 export default Lane;
+
+
