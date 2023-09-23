@@ -20,7 +20,7 @@ const LaneTitle = ({ lane, setLanes }: ILaneTitle) => {
   const changeName = () => {
     setLanes((prev) => {
       return prev.map((ln) =>
-        ln.id === lane.id ? { ...ln, lanename: laneName } : ln
+        ln.id === lane.id ? { ...ln, name: laneName } : ln
       );
     });
   };
