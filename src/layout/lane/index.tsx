@@ -26,7 +26,8 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
   const addTask = (newTask: ITask) => {
     setLanes((prev) => {
       return prev.map((ln) =>
-        ln.id === lane.id ? { ...ln, tasks: [...ln.tasks, newTask] } : ln
+        ln.id === lane.id ?
+          { ...ln, tasks: [...ln.tasks, newTask] } : ln
       );
     });
   };
@@ -48,6 +49,21 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
       );
     });
   };
+
+  // const triggerAction = (action: "update" | "add" | "delete", selectedTask: ITask) => {
+  //   setLanes((prev) => {
+  //     return prev.map((ln) => {
+  //       if (ln.id === lane.id) {
+  //         let tasks = ln.tasks;
+  //         if (action === 'add') tasks = [...ln.tasks, selectedTask];
+  //         else if (action === 'update') tasks = ln.tasks.map((task) => task.id === selectedTask.id ? selectedTask : task);
+  //         else if (action === 'delete') tasks = ln.tasks.filter((task) => task.id !== selectedTask.id)
+  //         return { ...ln, tasks: tasks }
+  //       }
+  //       return ln
+  //     });
+  //   });
+  // };
 
   return (
     <>

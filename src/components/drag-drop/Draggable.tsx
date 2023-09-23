@@ -7,7 +7,7 @@ interface IDroppableProps {
     children: ReactNode
 }
 
-const Droppable = ({ draggableId, index, children }: IDroppableProps) => {
+const Draggable = ({ draggableId, index, children }: IDroppableProps) => {
     return (
         <ReactDraggable draggableId={draggableId} index={index}>
             {(provided) => (
@@ -23,4 +23,4 @@ const Droppable = ({ draggableId, index, children }: IDroppableProps) => {
     )
 }
 
-export default Droppable
+export default Draggable

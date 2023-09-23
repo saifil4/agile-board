@@ -3,6 +3,11 @@ import Header from 'layout/header/Header';
 import LaneList from 'layout/lane-list';
 import { laneData, ILane } from 'data';
 import { useData } from 'hooks/useData';
+import Submenu from 'layout/sub-menu';
+
+const compareTexts = (a: string, b: string) => {
+  return a.toLowerCase().includes(b.toLocaleLowerCase());
+}
 
 const Workspace = () => {
 
@@ -13,28 +18,23 @@ const Workspace = () => {
 
   useEffect(() => {
     const filterHandler = () => {
-      var filtered = lanes;
-      if (selectedLabel === "0") {
-        filtered = lanes.map(lane => {
-          return { ...lane, tasks: lane.tasks.filter(task => task.name.includes(searchValue)) }
-        });
-      } else {
-        filtered = lanes.map(lane => {
-          return { ...lane, tasks: lane.tasks.filter(task => task.label_id === selectedLabel && task.name.includes(searchValue)) }
-        })
-      }
+      const filtered = lanes.map(lane => {
+        const tasks = selectedLabel === "0" ?
+          lane.tasks.filter(task => compareTexts(task.name, searchValue)) :
+          lane.tasks.filter(task => task.label_id === selectedLabel && compareTexts(task.name, searchValue))
+        return { ...lane, tasks: tasks }
+      });
       setFilteredLanes(filtered)
     }
     filterHandler();
   }, [selectedLabel, lanes, searchValue]);
 
-  const handleSearch = (searchParam: string) => {
-    setSearchValue(searchParam)
-  }
+  const handleSearch = (searchParam: string) => setSearchValue(searchParam)
 
   return (
     <main className="wrapper">
       <Header handleSearch={handleSearch} />
+      <Submenu handleSearch={handleSearch} />
       <LaneList filteredLanes={filteredLanes} setFilteredLanes={setFilteredLanes} setLanes={setLanes} />
     </main>
   );
