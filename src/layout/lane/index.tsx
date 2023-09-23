@@ -1,8 +1,9 @@
 import { Dispatch, useState, MouseEvent } from "react";
+import { ILane, ITask } from "data";
+import { styled } from 'styled-components'
 import LaneTitle from "layout/lane/LaneTitle";
 import Task from "layout/task";
 import TaskForm from "layout/task-form";
-import { ILane, ITask } from "data";
 import Droppable from "components/drag-drop/Droppable";
 
 interface ILaneProps {
@@ -50,13 +51,13 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
 
   return (
     <>
-      <div className="lane">
+      <LaneContainer>
         <LaneTitle lane={lane} setLanes={setLanes} />
-        <div onClick={(e) => openModal(e)} className="add-button">
+        <AddButton onClick={(e) => openModal(e)}>
           <i className="fas fa-plus"></i>
-        </div>
+        </AddButton>
         <Droppable droppableId={lane.id.toString()} key={lane.id}>
-          <div className="lane-body">
+          <LaneBody>
             {lane.tasks.map((task, index) => (
               <Task
                 deleteTask={deleteTask}
@@ -66,9 +67,9 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
                 task={task}
               />
             ))}
-          </div>
+          </LaneBody>
         </Droppable>
-      </div>
+      </LaneContainer>
       {
         showModal && <TaskForm showModal={showModal} closeModal={closeModal} save={addTask} />
       }
@@ -79,3 +80,30 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
 export default Lane;
 
 
+const LaneContainer = styled.div({
+  height: "calc(100% - 10px)",
+  width: "275px",
+  margin: "0px 10px 0px 10px",
+  paddinBottom: "10px",
+  display: "inline-block",
+  verticalAlign: "top",
+});
+
+const AddButton = styled.div({
+  width: "100%",
+  padding: "2px",
+  textAlign: "center",
+  background: "white",
+  border: "1px solid #ebecf0",
+  borderRadius: "0.25rem",
+  marginBottom: "5px",
+  color: "#42526e",
+  fonSize: "14px",
+  cursor: "pointer",
+})
+
+const LaneBody = styled.div({
+  height: "calc(100% - 50px)",
+  width: "100%",
+  borderRadius: "5px"
+})
