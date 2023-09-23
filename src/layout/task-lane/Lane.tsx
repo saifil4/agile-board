@@ -32,31 +32,19 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
 
   const updateTask = (updatedTask: ITask) => {
     setLanes((prev) => {
-      return prev.map((ln) => {
-        if (ln.id === lane.id) {
-          return {
-            ...ln,
-            tasks: ln.tasks.map((task) =>
-              task.id === updatedTask.id ? updatedTask : task
-            ),
-          };
-        }
-        return ln;
-      });
+      return prev.map((ln) =>
+        ln.id === lane.id ?
+          { ...ln, tasks: ln.tasks.map((task) => task.id === updatedTask.id ? updatedTask : task) } : ln
+      );
     });
   };
 
   const deleteTask = (deletedTask: ITask) => {
     setLanes((prev) => {
-      return prev.map((ln) => {
-        if (ln.id === lane.id) {
-          return {
-            ...ln,
-            tasks: ln.tasks.filter((task) => task.id !== deletedTask.id),
-          };
-        }
-        return ln;
-      });
+      return prev.map((ln) =>
+        ln.id === lane.id ?
+          { ...ln, tasks: ln.tasks.filter((task) => task.id !== deletedTask.id) } : ln
+      );
     });
   };
 

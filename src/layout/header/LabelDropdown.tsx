@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import LabelModal from "components/label-form/LabelModal";
+import LabelModal from "layout/label-form/LabelModal";
 import { useData } from "hooks/useData";
 
 const LabelDropdown = () => {

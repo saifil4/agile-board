@@ -29,7 +29,7 @@ const LabelModal = ({ showModal, closeModal }: ILabelModalProps) => {
   }
 
   const createLabel = (e: any) => {
-    e. preventDefault();
+    e.preventDefault();
     const newLabel = getLabel();
     setLabelList((prev) => {
       return [...prev, newLabel];

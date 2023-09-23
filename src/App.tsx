@@ -2,7 +2,7 @@ import './App.css';
 import { DataProvider } from 'hooks/useData';
 
 //importing components
-import Main from './components/Main';
+import Main from './layout/Main';
 
 
 function App() {

@@ -1,5 +1,5 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import Lane from "components/task-lane/Lane";
+import Lane from "layout/task-lane/Lane";
 import { ILane } from "data";
 import { Dispatch } from "react";
 

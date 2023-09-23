@@ -84,6 +84,7 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITa
                   }
                 </Input>
                 <Input
+                  type="text"
                   label="Name"
                   value={selectedTask.name}
                   name="name"
@@ -100,7 +101,7 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITa
               <Col md="4">
                 <Input
                   label="Due date"
-                  type="text"
+                  type="date"
                   value={selectedTask.due_date}
                   name="due_date"
                   onChange={handeChange}
