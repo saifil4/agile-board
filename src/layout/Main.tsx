@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from 'layout/header/Header';
-import LaneList from 'layout/task-lane/LaneList';
+import LaneList from 'layout/lane-list';
 import { laneData, ILane } from 'data';
 import { useData } from 'hooks/useData';
 

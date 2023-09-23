@@ -1,8 +1,8 @@
 import { Dispatch, useState, MouseEvent } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import LaneTitle from "./LaneTitle";
-import Task from "./Task";
-import TaskModal from "../task-form/TaskModal";
+import LaneTitle from "layout/lane/LaneTitle";
+import Task from "layout/task";
+import TaskForm from "layout/task-form";
 import { ILane, ITask } from "data";
 
 interface ILaneProps {
@@ -77,7 +77,7 @@ const Lane = ({ lane, setLanes }: ILaneProps) => {
         </Droppable>
       </div>
       {
-        showModal && <TaskModal showModal={showModal} closeModal={closeModal} save={addTask} />
+        showModal && <TaskForm showModal={showModal} closeModal={closeModal} save={addTask} />
       }
     </>
   );

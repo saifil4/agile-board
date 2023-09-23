@@ -2,7 +2,7 @@ import React, { useMemo, useState, MouseEvent } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useData } from "hooks/useData";
 import { priorityList, ITask } from "data";
-import TaskModal from "layout/task-form/TaskModal";
+import TaskForm from "layout/task-form";
 import { styled } from 'styled-components'
 
 interface ITaskProps {
@@ -57,7 +57,7 @@ const Task = ({ index, task, updateTask, deleteTask }: ITaskProps) => {
         )}
       </Draggable>
       {showModal && (
-        <TaskModal
+        <TaskForm
           task={task}
           save={updateTask}
           deleteTask={deleteTask}

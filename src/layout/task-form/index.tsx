@@ -3,8 +3,8 @@ import { Modal } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import { ITask, priorityList } from "data";
-import Input from "./Input";
 import { useData } from "hooks/useData";
+import { TextInput, DateInput, Select } from "components/form";
 
 const getDefaultTask = () => {
   const task: ITask = {
@@ -18,7 +18,7 @@ const getDefaultTask = () => {
   return task;
 };
 
-interface ITaskModal {
+interface ITaskFormProps {
   showModal: boolean,
   closeModal: () => void,
   task?: ITask | null,
@@ -26,7 +26,7 @@ interface ITaskModal {
   deleteTask?: (task: ITask) => void
 }
 
-const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITaskModal) => {
+const TaskForm = ({ showModal, closeModal, task = null, save, deleteTask }: ITaskFormProps) => {
 
   const defaultTask = getDefaultTask();
   const { labelList } = useData();
@@ -68,29 +68,28 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITa
           <Container>
             <Row>
               <Col md="8">
-                <Input
+                <Select
                   label="Label"
-                  type="select"
                   value={selectedTask.label_id}
                   name="label_id"
                   onChange={handeChange}
                 >
                   {
-                    labelList.map(label => (
-                      <option value={label.id} key={label.id}>
+                    labelList.map((label) => (
+                      <option value={label.id}>
                         {label.name}
                       </option>
                     ))
                   }
-                </Input>
-                <Input
+                </Select>
+                <TextInput
                   type="text"
                   label="Name"
                   value={selectedTask.name}
                   name="name"
                   onChange={handeChange}
                 />
-                <Input
+                <TextInput
                   label="Description"
                   type="textarea"
                   value={selectedTask.description}
@@ -99,24 +98,27 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITa
                 />
               </Col>
               <Col md="4">
-                <Input
+                <DateInput
                   label="Due date"
-                  type="date"
                   value={selectedTask.due_date}
                   name="due_date"
                   onChange={handeChange}
                 />
-                <Input
+                <Select
+                  key=""
                   label="Priority"
-                  type="select"
                   value={selectedTask.priority}
                   name="priority"
                   onChange={handeChange}
                 >
-                  {priorityList.map((pl, index) => (
-                    <option key={index} value={pl.value}>{pl.name}</option>
-                  ))}
-                </Input>
+                  {
+                    priorityList.map((pl) => (
+                      <option value={pl.value}>
+                        {pl.name}
+                      </option>
+                    ))
+                  }
+                </Select>
               </Col>
             </Row>
           </Container>
@@ -140,4 +142,4 @@ const TaskModal = ({ showModal, closeModal, task = null, save, deleteTask }: ITa
   );
 };
 
-export default TaskModal;
+export default TaskForm;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import LabelModal from "layout/label-form/LabelModal";
+import LabelForm from "layout/label-form";
 import { useData } from "hooks/useData";
 
 const LabelDropdown = () => {
@@ -47,7 +47,7 @@ const LabelDropdown = () => {
           </Dropdown.Item>
         ))}
       </DropdownButton>
-      <LabelModal showModal={showModal} closeModal={closeForm} />
+      <LabelForm showModal={showModal} closeModal={closeForm} />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import Lane from "layout/task-lane/Lane";
+import Lane from "layout/lane";
 import { ILane } from "data";
 import { Dispatch } from "react";
 
@@ -55,15 +55,13 @@ const LaneList = ({ filteredLanes, setFilteredLanes, setLanes }: ILaneListProps)
   };
 
   return (
-    <>
-      <div className="lanecontainer">
-        <DragDropContext onDragEnd={(e) => handleDragEnd(e)}>
-          {filteredLanes.map((lane) => (
-            <Lane setLanes={setLanes} key={lane.id} lane={lane} />
-          ))}
-        </DragDropContext>
-      </div>
-    </>
+    <div className="lanecontainer">
+      <DragDropContext onDragEnd={(e) => handleDragEnd(e)}>
+        {filteredLanes.map((lane) => (
+          <Lane setLanes={setLanes} key={lane.id} lane={lane} />
+        ))}
+      </DragDropContext>
+    </div>
   );
 };
 

@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { useData } from "hooks/useData";
 import { ILabel } from "data";
 
-interface ILabelModalProps {
+interface ILabelFormProps {
   showModal: boolean,
   closeModal: () => void
 }
 
-const LabelModal = ({ showModal, closeModal }: ILabelModalProps) => {
+const LabelForm = ({ showModal, closeModal }: ILabelFormProps) => {
   const [labelname, setLabelName] = useState("");
   const [key, setKey] = useState("");
   const [background, setBackground] = useState("#000000");
@@ -111,4 +111,4 @@ const LabelModal = ({ showModal, closeModal }: ILabelModalProps) => {
   );
 };
 
-export default LabelModal;
+export default LabelForm;
