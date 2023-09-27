@@ -33,7 +33,7 @@ const Workspace = () => {
 
   return (
     <main className="wrapper">
-      <Header handleSearch={handleSearch} />
+      <Header />
       <Submenu handleSearch={handleSearch} />
       <LaneList filteredLanes={filteredLanes} setFilteredLanes={setFilteredLanes} setLanes={setLanes} />
     </main>
