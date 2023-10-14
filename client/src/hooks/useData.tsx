@@ -1,5 +1,5 @@
 import { useState, useContext, ReactNode, createContext, Dispatch, SetStateAction } from "react";
-import { labelData, ILabel } from "data";
+import { ILabel } from "data";
 
 
 interface IDataProvider {
@@ -23,7 +23,7 @@ const DataContext = createContext<IDataProvider>({
 export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
-  const [labelList, setLabelList] = useState<ILabel[]>(labelData);
+  const [labelList, setLabelList] = useState<ILabel[]>([]);
   const [selectedLabel, setSelectedLabel] = useState<string>("0");
   const value = { labelList, selectedLabel, setSelectedLabel, setLabelList };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

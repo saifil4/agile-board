@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from 'layout/header/Header';
 import LaneList from 'layout/lane-list';
-import { laneData, ILane } from 'data';
+import { ILane } from 'data';
 import { useData } from 'hooks/useData';
 import Submenu from 'layout/sub-menu';
 
@@ -12,9 +12,26 @@ const compareTexts = (a: string, b: string) => {
 const Workspace = () => {
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const { selectedLabel } = useData();
-  const [lanes, setLanes] = useState<ILane[]>(laneData);
+  const { selectedLabel, setLabelList } = useData();
+  const [lanes, setLanes] = useState<ILane[]>([]);
   const [filteredLanes, setFilteredLanes] = useState<ILane[]>(lanes);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const P1 = fetch('http://localhost:8080/api/workspace/lane/');
+        const P2 = fetch('http://localhost:8080/api/workspace/label/');
+        const [laneResponse, labelResponse] = await Promise.all([P1, P2]);
+        const laneData = await laneResponse.json();
+        const labelData = await labelResponse.json();
+        setLabelList(labelData);
+        setLanes(laneData);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    getData();
+  }, [])
 
   useEffect(() => {
     const filterHandler = () => {
