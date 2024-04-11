@@ -12,20 +12,20 @@ const compareTexts = (a: string, b: string) => {
 const Workspace = () => {
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const { selectedLabel, setLabelList } = useData();
+  const { selectedLabel, updateLabelList, updateFieldList } = useData();
   const [lanes, setLanes] = useState<ILane[]>([]);
   const [filteredLanes, setFilteredLanes] = useState<ILane[]>(lanes);
+
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const P1 = fetch('http://localhost:8080/api/workspace/lane/');
-        const P2 = fetch('http://localhost:8080/api/workspace/label/');
-        const [laneResponse, labelResponse] = await Promise.all([P1, P2]);
-        const laneData = await laneResponse.json();
-        const labelData = await labelResponse.json();
-        setLabelList(labelData);
-        setLanes(laneData);
+        const res = await fetch('http://localhost:8080/api/workspace/');
+        const data = await res.json();
+        console.log(data);
+        updateLabelList(data?.labels);
+        updateFieldList(data?.fields);
+        setLanes(data?.lanes);
       } catch (err) {
         console.error(err);
       }

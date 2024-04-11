@@ -15,7 +15,7 @@ const LabelForm = ({ showModal, closeModal }: ILabelFormProps) => {
   const [background, setBackground] = useState("#000000");
   const [color, setColor] = useState("#ffffff");
 
-  const { setLabelList } = useData();
+  const { addToLabelList } = useData();
 
   function getLabel() {
     const label: ILabel = {
@@ -31,9 +31,7 @@ const LabelForm = ({ showModal, closeModal }: ILabelFormProps) => {
   const createLabel = (e: any) => {
     e.preventDefault();
     const newLabel = getLabel();
-    setLabelList((prev) => {
-      return [...prev, newLabel];
-    });
+    addToLabelList(newLabel);
     closeModal();
   };
 
@@ -52,6 +50,7 @@ const LabelForm = ({ showModal, closeModal }: ILabelFormProps) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
+
           <Form.Group>
             <Form.Label>Id</Form.Label>
             <Form.Control

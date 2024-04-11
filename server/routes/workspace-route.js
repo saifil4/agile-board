@@ -3,6 +3,13 @@ const uuidv4 = require('uuid').v4;
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.json(workspaceData);
+});
+
+router.get('/get-all', (req, res) => {
+    res.json(workspaceList);
+});
 
 router.get('/lane', (req, res) => {
     res.json(laneData);
@@ -11,6 +18,22 @@ router.get('/lane', (req, res) => {
 router.get('/label', (req, res) => {
     res.json(labelData);
 });
+
+const workspaceList = [
+    {
+        id: "1",
+        name: "Demo Workspace",
+    },
+    {
+        id: "2",
+        name: "Demo Workspace 2",
+    },
+    {
+        id: "3",
+        name: "Demo Workspace 3",
+    }
+]
+
 
 
 const labelData = [
@@ -112,6 +135,15 @@ const laneData = [
         ]
     }
 ];
+
+
+
+const workspaceData = {
+    id: "1",
+    name: "Demo Workspace",
+    lanes: laneData,
+    labels: labelData,
+}
 
 
 module.exports = router;

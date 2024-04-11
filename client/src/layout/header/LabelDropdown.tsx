@@ -4,7 +4,7 @@ import LabelForm from "layout/label-form";
 import { useData } from "hooks/useData";
 
 const LabelDropdown = () => {
-  const { labelList, selectedLabel, setSelectedLabel } = useData();
+  const { labelList, selectedLabel, updateSelectedLabel } = useData();
   const [showModal, setShowModal] = useState(false);
 
   const openForm = () => setShowModal(true);
@@ -18,7 +18,7 @@ const LabelDropdown = () => {
 
   const handleLabelChange = (e: string) => {
     if (e !== "-1") {
-      setSelectedLabel(e);
+      updateSelectedLabel(e);
     }
   };
 

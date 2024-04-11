@@ -1,3 +1,5 @@
+import { HTMLInputTypeAttribute } from "react"
+
 export interface ILane {
     id: string,
     name: string,
@@ -10,7 +12,15 @@ export interface ITask {
     name: string,
     description: string,
     due_date: string,
-    priority: number
+    priority: number,
+}
+
+export interface IField {
+    id: string,
+    type: HTMLInputTypeAttribute,
+    is_required: boolean,
+    name: string,
+    options: Array<Object>,
 }
 
 export interface IPriority {
@@ -25,6 +35,24 @@ export interface ILabel {
     name: string,
     bg_color: string,
     color: string,
+}
+
+
+/* 
+Workspaces
+  Users
+  Labels
+  Lanes
+    Tasks
+  Fields
+*/
+
+export interface IWorkspace {
+    id: string,
+    name: string,
+    lanes: Array<ILane>,
+    labels: Array<ILabel>
+    fields: Array<IField>
 }
 
 

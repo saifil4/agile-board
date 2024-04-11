@@ -26,6 +26,22 @@ interface ITaskFormProps {
   deleteTask?: (task: ITask) => void
 }
 
+// const INPUT_COMPONENT = {
+//   "text": TextInput,
+//   "date": DateInput,
+//   "select": Select
+// }
+
+
+// const InputItem = ({ field }: { field: IField }) => {
+
+//   const InputComponent = INPUT_COMPONENT["text"];
+
+//   return (
+//     <InputComponent {...field}>
+//   )
+// }
+
 const TaskForm = ({ showModal, closeModal, task = null, save, deleteTask }: ITaskFormProps) => {
 
   const defaultTask = getDefaultTask();
