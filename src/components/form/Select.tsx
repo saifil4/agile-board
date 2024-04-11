@@ -1,17 +1,18 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ChangeEvent } from "react";
 import { Form } from "react-bootstrap";
 
 interface ISelectProps {
     value: string | number,
     name: string,
     label: string,
-    children: ReactNode,
+    list: { name: string, value: string | number }[],
     onChange: (e: ChangeEvent<any>) => void,
 }
 
-export const Select = ({ value, name, label, children, onChange }: ISelectProps) => {
+export const Select: React.FC<ISelectProps> = ({ value, name, label, list, onChange }) => {
+
     return (
-        <select>
+        <>
             <Form.Label className="form-label">{label}</Form.Label>
             <Form.Control
                 name={name}
@@ -19,8 +20,14 @@ export const Select = ({ value, name, label, children, onChange }: ISelectProps)
                 value={value}
                 onChange={onChange}
             >
-                {children}
+                {
+                    list.map((pl) => (
+                        <option value={pl.value}>
+                            {pl.name}
+                        </option>
+                    ))
+                }
             </Form.Control>
-        </select>
+        </>
     );
 };

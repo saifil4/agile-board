@@ -89,15 +89,8 @@ const TaskForm = ({ showModal, closeModal, task = null, save, deleteTask }: ITas
                   value={selectedTask.label_id}
                   name="label_id"
                   onChange={handeChange}
-                >
-                  {
-                    labelList.map((label) => (
-                      <option value={label.id}>
-                        {label.name}
-                      </option>
-                    ))
-                  }
-                </Select>
+                  list={labelList.map((label) => ({ name: label.name, value: label.id }))}
+                />
                 <TextInput
                   type="text"
                   label="Name"
@@ -125,16 +118,9 @@ const TaskForm = ({ showModal, closeModal, task = null, save, deleteTask }: ITas
                   label="Priority"
                   value={selectedTask.priority}
                   name="priority"
+                  list={priorityList}
                   onChange={handeChange}
-                >
-                  {
-                    priorityList.map((pl) => (
-                      <option value={pl.value}>
-                        {pl.name}
-                      </option>
-                    ))
-                  }
-                </Select>
+                />
               </Col>
             </Row>
           </Container>
