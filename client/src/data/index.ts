@@ -76,7 +76,7 @@ export const priorityList: IPriority[] = [
 ]
 
 
-const workspaceList = [
+export const workspaceList = [
     {
         id: "1",
         name: "Demo Workspace",
@@ -195,7 +195,7 @@ const laneData = [
 
 
 
-const workspaceData = {
+export const workspaceData = {
     id: "1",
     name: "Demo Workspace",
     lanes: laneData,
