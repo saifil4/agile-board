@@ -11,6 +11,7 @@ const Droppable = ({ droppableId, children }: IDroppableProps) => {
         <ReactDroppable droppableId={droppableId}>
             {(provided) => (
                 <div
+                    style={{ height: "100%" }}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                 >
