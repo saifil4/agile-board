@@ -5,11 +5,11 @@ import { ILane } from 'data';
 import { useData } from 'hooks/useData';
 import Submenu from 'layout/sub-menu';
 
-const compareTexts = (a: string, b: string) => {
+const compareTexts = (a: string, b: string): boolean => {
   return a.toLowerCase().includes(b.toLocaleLowerCase());
 }
 
-const Workspace = () => {
+const App = () => {
 
   const [searchValue, setSearchValue] = useState<string>('');
   const { selectedLabel, updateLabelList, updateFieldList } = useData();
@@ -57,4 +57,4 @@ const Workspace = () => {
   );
 }
 
-export default Workspace;
+export default App;

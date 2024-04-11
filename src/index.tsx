@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Providers from 'providers';
+import { DataProvider } from 'hooks/useData';
+import App from 'App';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './global.css';
@@ -8,7 +9,9 @@ import './global.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Providers />
+    <DataProvider>
+      <App />
+    </DataProvider>
   </React.StrictMode>
   ,
   document.getElementById('root')
