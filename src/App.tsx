@@ -5,6 +5,8 @@ import { ILane } from 'data';
 import { useData } from 'hooks/useData';
 import Submenu from 'layout/sub-menu';
 
+import { laneData } from 'data';
+
 const compareTexts = (a: string, b: string): boolean => {
   return a.toLowerCase().includes(b.toLocaleLowerCase());
 }
@@ -12,26 +14,10 @@ const compareTexts = (a: string, b: string): boolean => {
 const App = () => {
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const { selectedLabel, updateLabelList, updateFieldList } = useData();
-  const [lanes, setLanes] = useState<ILane[]>([]);
+  const { selectedLabel } = useData();
+  const [lanes, setLanes] = useState<ILane[]>(laneData);
   const [filteredLanes, setFilteredLanes] = useState<ILane[]>(lanes);
 
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await fetch('http://localhost:8080/api/workspace/');
-        const data = await res.json();
-        console.log(data);
-        updateLabelList(data?.labels);
-        updateFieldList(data?.fields);
-        setLanes(data?.lanes);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    getData();
-  }, [])
 
   useEffect(() => {
     const filterHandler = () => {

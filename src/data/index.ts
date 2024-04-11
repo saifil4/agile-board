@@ -1,4 +1,3 @@
-import { HTMLInputTypeAttribute } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ILane {
@@ -16,14 +15,6 @@ export interface ITask {
     priority: number,
 }
 
-export interface IField {
-    id: string,
-    type: HTMLInputTypeAttribute,
-    is_required: boolean,
-    name: string,
-    options: Array<Object>,
-}
-
 export interface IPriority {
     name: string,
     value: number,
@@ -38,22 +29,11 @@ export interface ILabel {
     color: string,
 }
 
-
-/* 
-Workspaces
-  Users
-  Labels
-  Lanes
-    Tasks
-  Fields
-*/
-
 export interface IWorkspace {
     id: string,
     name: string,
     lanes: Array<ILane>,
     labels: Array<ILabel>
-    fields: Array<IField>
 }
 
 
@@ -76,24 +56,7 @@ export const priorityList: IPriority[] = [
 ]
 
 
-export const workspaceList = [
-    {
-        id: "1",
-        name: "Demo Workspace",
-    },
-    {
-        id: "2",
-        name: "Demo Workspace 2",
-    },
-    {
-        id: "3",
-        name: "Demo Workspace 3",
-    }
-]
-
-
-
-const labelData = [
+export const labelData = [
     {
         id: "1",
         key: "B",
@@ -118,7 +81,7 @@ const labelData = [
 ]
 
 
-const laneData = [
+export const laneData = [
     {
         id: "1",
         name: 'Backlog',
@@ -192,15 +155,6 @@ const laneData = [
         ]
     }
 ];
-
-
-
-export const workspaceData = {
-    id: "1",
-    name: "Demo Workspace",
-    lanes: laneData,
-    labels: labelData,
-}
 
 
 
