@@ -1,5 +1,10 @@
-This is an effort to build a agile board using React.
+This is an effort to build a kanban board using React.
 
-It includes ability to create tasks, drag and drop them around inn different status.
-You can also create new labels and filter tasks by labels on the left.
+You can do the following on the app.
+Search tasks.
+Add and update tasks.
+Create new label and assign that label to a task.
+Filter tasks by label.
+
+To run the project `npm start`
 
